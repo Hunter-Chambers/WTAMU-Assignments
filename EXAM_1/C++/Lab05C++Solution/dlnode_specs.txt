@@ -1,0 +1,51 @@
+// FILE: dlnode.h
+// PROVIDES: A class for a node in a doubly linked list, and list manipulation
+// functions
+//
+// GENERIC Item type for dlnode class:
+//     Each node of the list contains a piece of data and a pointers to the
+//     previous and next nodes. The Item may be any of the built-in C++ classes 
+//     (int, char, ...) or a class with a default constructor, a copy constructor, 
+//     an assignment operator, and a test for equality (x == y).
+//
+// CONSTRUCTOR for the dlnode class:
+//   dlnode(
+//     dlnode* init_previous = NULL,
+//     const value_type& init_data = value_type(),
+//     dlnode* init_next = NULL
+//   )
+//     Postcondition: The node contains the specified data and links.
+//     NOTE: The default value for the init_data is obtained from the default
+//     constructor of the value_type. In the ANSI/ISO standard, this notation
+//     is also allowed for the built-in types, providing a default value of
+//     zero. Both links have a default value of NULL.
+//
+// NOTE:
+//   Some of the functions have a return value which is a pointer to a node.
+//   Each of these  functions comes in two versions: a non-const version (where
+//   the return value is dlnode*) and a const version (where the return value
+//   is const dlnode*). 
+// EXAMPLES:
+//    const dlnode *c;
+//    c->previous( ) activates the const version of previous
+//    dlnode *p;
+//    p->next( ) activates the non-const version of next
+//
+// MEMBER FUNCTIONS for the dlnode class:
+//   void set_data(const value_type& new_data)
+//     Postcondition: The node now contains the specified new data.
+//   
+//   void set_next(node* new_next)
+//   and
+//   void set_previous(node* new_previous)
+//     Postcondition: The node now contains the specified new link.
+//
+//   value_type data( ) const
+//     Postcondition: The return value is the data from this dlnode.
+//
+//   const dlnode* next( ) const <----- const version
+//   dlnode* next( ) <----------------- non-const version
+//   const dlnode* previous( ) const <----- const version
+//   dlnode* previous( ) <----------------- non-const version
+//   See the note (above) about the const version and non-const versions:
+//     Postcondition: The return value is a link from this dlnode.
