@@ -1,0 +1,5 @@
+--tool:memcheck
+--memcheck:read-inline-info=yes
+--memcheck:leak-check=full
+--memcheck:show-leak-kinds=all
+

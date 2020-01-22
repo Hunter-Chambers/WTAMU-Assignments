@@ -1,0 +1,504 @@
+--------------------
+Testing various sorting algorithms with an array of 256 items
+	Largest item in the array is 0X3E7
+	which has 3 digits
+
+Averages are:
+Heapsort:      1.11960000e+04
+Mergesort:     3.47577000e+04
+Quicksort:     1.37544000e+04
+Radixsort:     1.26446000e+04
+Radixsortc:    4.65060000e+03
+Selectionsort: 4.24139000e+04
+QuicksortI:    1.20557000e+04
+QuicksortIs:   1.25438000e+04
+--------------------
+Testing various sorting algorithms with an array of 256 items
+	Largest item in the array is 0X270F
+	which has 4 digits
+
+Averages are:
+Heapsort:      1.10671000e+04
+Mergesort:     3.36320000e+04
+Quicksort:     1.39681000e+04
+Radixsort:     1.37893000e+04
+Radixsortc:    5.75100000e+03
+Selectionsort: 4.24909000e+04
+QuicksortI:    1.21940000e+04
+QuicksortIs:   1.24019000e+04
+--------------------
+Testing various sorting algorithms with an array of 256 items
+	Largest item in the array is 0X1869F
+	which has 5 digits
+
+Averages are:
+Heapsort:      1.07795000e+04
+Mergesort:     3.42264000e+04
+Quicksort:     1.46419000e+04
+Radixsort:     1.66518000e+04
+Radixsortc:    7.32160000e+03
+Selectionsort: 4.21028000e+04
+QuicksortI:    1.25390000e+04
+QuicksortIs:   1.27819000e+04
+--------------------
+Testing various sorting algorithms with an array of 256 items
+	Largest item in the array is 0XF423F
+	which has 6 digits
+
+Averages are:
+Heapsort:      1.00593000e+04
+Mergesort:     2.87789000e+04
+Quicksort:     1.28878000e+04
+Radixsort:     1.66740000e+04
+Radixsortc:    7.80180000e+03
+Selectionsort: 3.28580000e+04
+QuicksortI:    1.15434000e+04
+QuicksortIs:   1.17452000e+04
+--------------------
+Testing various sorting algorithms with an array of 1024 items
+	Largest item in the array is 0X3E7
+	which has 3 digits
+
+Averages are:
+Heapsort:      4.49328000e+04
+Mergesort:     1.02287400e+05
+Quicksort:     5.34124000e+04
+Radixsort:     2.03066000e+04
+Radixsortc:    9.22240000e+03
+Selectionsort: 3.85569000e+05
+QuicksortI:    4.95919000e+04
+QuicksortIs:   4.99643000e+04
+--------------------
+Testing various sorting algorithms with an array of 1024 items
+	Largest item in the array is 0X270F
+	which has 4 digits
+
+Averages are:
+Heapsort:      4.51037000e+04
+Mergesort:     1.02692200e+05
+Quicksort:     5.43934000e+04
+Radixsort:     2.71597000e+04
+Radixsortc:    1.27043000e+04
+Selectionsort: 3.96598200e+05
+QuicksortI:    4.91697000e+04
+QuicksortIs:   4.98011000e+04
+--------------------
+Testing various sorting algorithms with an array of 1024 items
+	Largest item in the array is 0X1869F
+	which has 5 digits
+
+Averages are:
+Heapsort:      4.43514000e+04
+Mergesort:     9.86873000e+04
+Quicksort:     5.61319000e+04
+Radixsort:     3.08365000e+04
+Radixsortc:    1.79341000e+04
+Selectionsort: 3.89264700e+05
+QuicksortI:    4.86800000e+04
+QuicksortIs:   4.85562000e+04
+--------------------
+Testing various sorting algorithms with an array of 1024 items
+	Largest item in the array is 0XF423F
+	which has 6 digits
+
+Averages are:
+Heapsort:      4.40184000e+04
+Mergesort:     1.05434000e+05
+Quicksort:     5.81922000e+04
+Radixsort:     3.98241000e+04
+Radixsortc:    2.05770000e+04
+Selectionsort: 3.90109100e+05
+QuicksortI:    4.96186000e+04
+QuicksortIs:   5.05957000e+04
+--------------------
+Testing various sorting algorithms with an array of 2048 items
+	Largest item in the array is 0X3E7
+	which has 3 digits
+
+Averages are:
+Heapsort:      1.00971000e+05
+Mergesort:     2.12467100e+05
+Quicksort:     1.11081000e+05
+Radixsort:     3.90890000e+04
+Radixsortc:    1.77416000e+04
+Selectionsort: 1.46673980e+06
+QuicksortI:    1.07066600e+05
+QuicksortIs:   1.05052600e+05
+--------------------
+Testing various sorting algorithms with an array of 2048 items
+	Largest item in the array is 0X270F
+	which has 4 digits
+
+Averages are:
+Heapsort:      9.78592000e+04
+Mergesort:     2.15796300e+05
+Quicksort:     1.19489500e+05
+Radixsort:     4.88286000e+04
+Radixsortc:    2.63701000e+04
+Selectionsort: 1.47605120e+06
+QuicksortI:    1.05544800e+05
+QuicksortIs:   1.05316900e+05
+--------------------
+Testing various sorting algorithms with an array of 2048 items
+	Largest item in the array is 0X1869F
+	which has 5 digits
+
+Averages are:
+Heapsort:      9.65362000e+04
+Mergesort:     2.10113600e+05
+Quicksort:     1.17965500e+05
+Radixsort:     5.74744000e+04
+Radixsortc:    3.33007000e+04
+Selectionsort: 1.46015340e+06
+QuicksortI:    1.06557000e+05
+QuicksortIs:   1.05514800e+05
+--------------------
+Testing various sorting algorithms with an array of 2048 items
+	Largest item in the array is 0XF423F
+	which has 6 digits
+
+Averages are:
+Heapsort:      9.60421000e+04
+Mergesort:     2.15480700e+05
+Quicksort:     1.18550700e+05
+Radixsort:     7.02347000e+04
+Radixsortc:    3.97554000e+04
+Selectionsort: 1.45533190e+06
+QuicksortI:    1.09179600e+05
+QuicksortIs:   1.05624500e+05
+--------------------
+Testing various sorting algorithms with an array of 4096 items
+	Largest item in the array is 0X3E7
+	which has 3 digits
+
+Averages are:
+Heapsort:      2.15977500e+05
+Mergesort:     4.49999100e+05
+Quicksort:     2.33304900e+05
+Radixsort:     6.75567000e+04
+Radixsortc:    3.64571000e+04
+Selectionsort: 5.58142420e+06
+QuicksortI:    2.23431400e+05
+QuicksortIs:   2.20691000e+05
+--------------------
+Testing various sorting algorithms with an array of 4096 items
+	Largest item in the array is 0X270F
+	which has 4 digits
+
+Averages are:
+Heapsort:      2.09907400e+05
+Mergesort:     4.37143200e+05
+Quicksort:     2.54305800e+05
+Radixsort:     8.66490000e+04
+Radixsortc:    4.68328000e+04
+Selectionsort: 5.65758010e+06
+QuicksortI:    2.34902600e+05
+QuicksortIs:   2.29065200e+05
+--------------------
+Testing various sorting algorithms with an array of 4096 items
+	Largest item in the array is 0X1869F
+	which has 5 digits
+
+Averages are:
+Heapsort:      2.11083300e+05
+Mergesort:     4.49280600e+05
+Quicksort:     2.55002200e+05
+Radixsort:     1.09284500e+05
+Radixsortc:    6.28904000e+04
+Selectionsort: 5.66414060e+06
+QuicksortI:    2.30506900e+05
+QuicksortIs:   2.35775200e+05
+--------------------
+Testing various sorting algorithms with an array of 4096 items
+	Largest item in the array is 0XF423F
+	which has 6 digits
+
+Averages are:
+Heapsort:      2.11207400e+05
+Mergesort:     4.41595200e+05
+Quicksort:     2.50760100e+05
+Radixsort:     1.34636200e+05
+Radixsortc:    7.90294000e+04
+Selectionsort: 5.62497300e+06
+QuicksortI:    2.27383800e+05
+QuicksortIs:   2.32789900e+05
+--------------------
+Testing various sorting algorithms with an array of 8192 items
+	Largest item in the array is 0X3E7
+	which has 3 digits
+
+Averages are:
+Heapsort:      4.63526700e+05
+Mergesort:     1.04999230e+06
+Quicksort:     5.18788100e+05
+Radixsort:     1.54369300e+05
+Radixsortc:    8.78782000e+04
+Selectionsort: 2.43951311e+07
+QuicksortI:    4.80970400e+05
+QuicksortIs:   4.82372900e+05
+--------------------
+Testing various sorting algorithms with an array of 8192 items
+	Largest item in the array is 0X270F
+	which has 4 digits
+
+Averages are:
+Heapsort:      4.64744500e+05
+Mergesort:     9.29912400e+05
+Quicksort:     5.33267700e+05
+Radixsort:     1.78952400e+05
+Radixsortc:    9.47115000e+04
+Selectionsort: 2.20149142e+07
+QuicksortI:    4.93344500e+05
+QuicksortIs:   4.96048400e+05
+--------------------
+Testing various sorting algorithms with an array of 8192 items
+	Largest item in the array is 0X1869F
+	which has 5 digits
+
+Averages are:
+Heapsort:      4.59032400e+05
+Mergesort:     9.27111800e+05
+Quicksort:     5.44059800e+05
+Radixsort:     2.20166500e+05
+Radixsortc:    1.36371300e+05
+Selectionsort: 2.21545439e+07
+QuicksortI:    4.97896900e+05
+QuicksortIs:   4.96016600e+05
+--------------------
+Testing various sorting algorithms with an array of 8192 items
+	Largest item in the array is 0XF423F
+	which has 6 digits
+
+Averages are:
+Heapsort:      4.55795500e+05
+Mergesort:     9.41125600e+05
+Quicksort:     5.41643900e+05
+Radixsort:     2.66063100e+05
+Radixsortc:    1.60061200e+05
+Selectionsort: 2.21870963e+07
+QuicksortI:    4.96474900e+05
+QuicksortIs:   4.99720800e+05
+--------------------
+Testing various sorting algorithms with an array of 16384 items
+	Largest item in the array is 0X3E7
+	which has 3 digits
+
+Averages are:
+Heapsort:      9.77054900e+05
+Mergesort:     1.85021420e+06
+Quicksort:     9.62299200e+05
+Radixsort:     2.57855800e+05
+Radixsortc:    1.41736400e+05
+Selectionsort: 8.64720618e+07
+QuicksortI:    9.67742000e+05
+QuicksortIs:   9.70557400e+05
+--------------------
+Testing various sorting algorithms with an array of 16384 items
+	Largest item in the array is 0X270F
+	which has 4 digits
+
+Averages are:
+Heapsort:      1.00004530e+06
+Mergesort:     1.95282120e+06
+Quicksort:     1.11055420e+06
+Radixsort:     3.37375300e+05
+Radixsortc:    1.96213600e+05
+Selectionsort: 8.68778573e+07
+QuicksortI:    1.06414270e+06
+QuicksortIs:   1.05197010e+06
+--------------------
+Testing various sorting algorithms with an array of 16384 items
+	Largest item in the array is 0X1869F
+	which has 5 digits
+
+Averages are:
+Heapsort:      1.00181580e+06
+Mergesort:     1.96319420e+06
+Quicksort:     1.16260070e+06
+Radixsort:     4.41006600e+05
+Radixsortc:    2.45849600e+05
+Selectionsort: 8.67366485e+07
+QuicksortI:    1.04249150e+06
+QuicksortIs:   1.04360700e+06
+--------------------
+Testing various sorting algorithms with an array of 16384 items
+	Largest item in the array is 0XF423F
+	which has 6 digits
+
+Averages are:
+Heapsort:      9.93511400e+05
+Mergesort:     1.92505540e+06
+Quicksort:     1.14219750e+06
+Radixsort:     5.02821800e+05
+Radixsortc:    3.12742600e+05
+Selectionsort: 8.75255274e+07
+QuicksortI:    1.05367320e+06
+QuicksortIs:   1.05390010e+06
+--------------------
+Testing various sorting algorithms with an array of 32768 items
+	Largest item in the array is 0X3E7
+	which has 3 digits
+
+Averages are:
+Heapsort:      2.15280490e+06
+Mergesort:     3.77084470e+06
+Quicksort:     2.13458250e+06
+Radixsort:     5.06511300e+05
+Radixsortc:    2.83738600e+05
+Selectionsort: 3.47206782e+08
+QuicksortI:    2.23895490e+06
+QuicksortIs:   2.28188990e+06
+--------------------
+Testing various sorting algorithms with an array of 32768 items
+	Largest item in the array is 0X270F
+	which has 4 digits
+
+Averages are:
+Heapsort:      2.23572440e+06
+Mergesort:     4.05907700e+06
+Quicksort:     2.37971930e+06
+Radixsort:     7.04908800e+05
+Radixsortc:    4.06803900e+05
+Selectionsort: 3.45820169e+08
+QuicksortI:    2.21837690e+06
+QuicksortIs:   2.27593920e+06
+--------------------
+Testing various sorting algorithms with an array of 32768 items
+	Largest item in the array is 0X1869F
+	which has 5 digits
+
+Averages are:
+Heapsort:      2.24794390e+06
+Mergesort:     4.12081080e+06
+Quicksort:     2.43036920e+06
+Radixsort:     8.45786600e+05
+Radixsortc:    4.97727900e+05
+Selectionsort: 3.46547059e+08
+QuicksortI:    2.26530460e+06
+QuicksortIs:   2.25136130e+06
+--------------------
+Testing various sorting algorithms with an array of 32768 items
+	Largest item in the array is 0XF423F
+	which has 6 digits
+
+Averages are:
+Heapsort:      2.22465960e+06
+Mergesort:     4.05430390e+06
+Quicksort:     2.43333930e+06
+Radixsort:     1.01589060e+06
+Radixsortc:    6.25751900e+05
+Selectionsort: 3.45876406e+08
+QuicksortI:    2.24758250e+06
+QuicksortIs:   2.26731260e+06
+--------------------
+Testing various sorting algorithms with an array of 65536 items
+	Largest item in the array is 0X3E7
+	which has 3 digits
+
+Averages are:
+Heapsort:      4.85645460e+06
+Mergesort:     7.70317410e+06
+Quicksort:     4.98447660e+06
+Radixsort:     1.02369060e+06
+Radixsortc:    6.08824500e+05
+Selectionsort: 1.38543613e+09
+QuicksortI:    5.22707380e+06
+QuicksortIs:   5.50960950e+06
+--------------------
+Testing various sorting algorithms with an array of 65536 items
+	Largest item in the array is 0X270F
+	which has 4 digits
+
+Averages are:
+Heapsort:      4.94530350e+06
+Mergesort:     8.35039660e+06
+Quicksort:     4.68674560e+06
+Radixsort:     1.32334590e+06
+Radixsortc:    7.74418200e+05
+Selectionsort: 1.37574659e+09
+QuicksortI:    4.49682750e+06
+QuicksortIs:   4.56627840e+06
+--------------------
+Testing various sorting algorithms with an array of 65536 items
+	Largest item in the array is 0X1869F
+	which has 5 digits
+
+Averages are:
+Heapsort:      5.00286310e+06
+Mergesort:     8.48514540e+06
+Quicksort:     5.13349080e+06
+Radixsort:     1.75731170e+06
+Radixsortc:    1.05515100e+06
+Selectionsort: 1.37756052e+09
+QuicksortI:    4.76661030e+06
+QuicksortIs:   4.79161710e+06
+--------------------
+Testing various sorting algorithms with an array of 65536 items
+	Largest item in the array is 0XF423F
+	which has 6 digits
+
+Averages are:
+Heapsort:      4.98843580e+06
+Mergesort:     8.44460090e+06
+Quicksort:     5.13959570e+06
+Radixsort:     2.00868100e+06
+Radixsortc:    1.26933310e+06
+Selectionsort: 1.38189250e+09
+QuicksortI:    4.76383170e+06
+QuicksortIs:   4.81230890e+06
+--------------------
+Testing various sorting algorithms with an array of 131072 items
+	Largest item in the array is 0X3E7
+	which has 3 digits
+
+Averages are:
+Heapsort:      1.15542742e+07
+Mergesort:     1.57991879e+07
+Quicksort:     1.19489313e+07
+Radixsort:     2.04691710e+06
+Radixsortc:    1.16093020e+06
+Selectionsort: 5.54617107e+09
+QuicksortI:    1.22849737e+07
+QuicksortIs:   1.29528853e+07
+--------------------
+Testing various sorting algorithms with an array of 131072 items
+	Largest item in the array is 0X270F
+	which has 4 digits
+
+Averages are:
+Heapsort:      1.16938855e+07
+Mergesort:     1.70656193e+07
+Quicksort:     9.63535650e+06
+Radixsort:     2.68917890e+06
+Radixsortc:    1.56709870e+06
+Selectionsort: 5.50745211e+09
+QuicksortI:    9.28051740e+06
+QuicksortIs:   9.44521450e+06
+--------------------
+Testing various sorting algorithms with an array of 131072 items
+	Largest item in the array is 0X1869F
+	which has 5 digits
+
+Averages are:
+Heapsort:      1.19101769e+07
+Mergesort:     1.76456618e+07
+Quicksort:     1.08144659e+07
+Radixsort:     3.41591910e+06
+Radixsortc:    2.04999970e+06
+Selectionsort: 5.50960232e+09
+QuicksortI:    1.00941818e+07
+QuicksortIs:   1.00930870e+07
+--------------------
+Testing various sorting algorithms with an array of 131072 items
+	Largest item in the array is 0XF423F
+	which has 6 digits
+
+Averages are:
+Heapsort:      1.21678132e+07
+Mergesort:     1.78286029e+07
+Quicksort:     1.09159733e+07
+Radixsort:     4.10551840e+06
+Radixsortc:    2.61135530e+06
+Selectionsort: 5.51563182e+09
+QuicksortI:    1.01051122e+07
+QuicksortIs:   1.02125770e+07
