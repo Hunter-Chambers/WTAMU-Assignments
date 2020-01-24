@@ -1,4 +1,4 @@
 # Makefile for HTTPServer.py
 
-run     : HTTPServer.py
-	python HTTPServer.py
+run     : server.py
+	python server.py
