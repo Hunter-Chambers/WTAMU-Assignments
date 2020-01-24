@@ -1,12 +1,11 @@
 #!/usr/bin/env python3
-#from socket import *
-import socket
+from socket import *
 
 
 def main():
 	serverPort = 8080
 	print("HERE")
-	serverSocket = socket.socket(socket.AF_INET,socket.SOCK_DGRAM)
+	serverSocket = socket(AF_INET,SOCK_DGRAM)
 	serverSocket.bind(('', serverPort))
 	print("The server is ready to receive")
 	while (True):
