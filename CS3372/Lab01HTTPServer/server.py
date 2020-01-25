@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import socket
+import time
 
 
 def main():
@@ -11,10 +12,12 @@ def main():
     connectionSocket, addr = serverSocket.accept()
     # sentence = connectionSocket.recv(1024).decode()
 
-    connectionSocket.send(b"HTTP/1.1 200 OK\n")
-    connectionSocket.send(b"Content-Type: text/html\n\n")
-    f = open("index.html")
+    connectionSocket.send(b"HTTP/1.1 200 OK\r\n")
+    connectionSocket.send(b"Content-Type: text/html\r\n\r\n")
+    # f = open("index.html")
+    f = open("Hello-php.php")
     connectionSocket.send(f.read().encode())
+    time.sleep(1)
     f.close()
 
     serverSocket.close()
