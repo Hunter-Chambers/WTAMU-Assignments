@@ -2,6 +2,8 @@
 import socket
 import time
 
+WINDOWS_NL = "\r\n"
+UNIX_NL = "\n"
 
 def main():
     serverPort = 8080
@@ -9,16 +11,33 @@ def main():
     serverSocket.bind(('', serverPort))
     serverSocket.listen(1)
     print("The server is ready to receive")
-    connectionSocket, addr = serverSocket.accept()
-    # sentence = connectionSocket.recv(1024).decode()
 
-    connectionSocket.send(b"HTTP/1.1 200 OK\r\n")
-    connectionSocket.send(b"Content-Type: text/html\r\n\r\n")
-    # f = open("index.html")
-    f = open("Hello-php.php")
-    connectionSocket.send(f.read().encode())
-    time.sleep(1)
-    f.close()
+    connectionSocket, addr = serverSocket.accept()
+    request = connectionSocket.recv(1024).decode()
+    request = request.split('\n')
+
+
+    if ("GET" in request[0]):
+        if ('\r' in request[0]):
+            ending = WINDOWS_NL
+        else:
+            ending = UNIX_NL
+
+        if (' / ' in request[0] or ' /index.html ' in request[0]):
+            print("correct request")
+            status = "HTTP/1.1 200 OK" + ending
+            header = "Content-Type: text/html" + ending + ending
+            connectionSocket.send(status.encode())
+            connectionSocket.send(header.encode())
+            f = open("index.html")
+            connectionSocket.send(f.read().encode())
+            f.close()
+        else:
+            print("incorrect request")
+            connectionSocket.send(("HTTP/1.1 404 NOT FOUND" + ending).encode())
+            connectionSocket.send(("Content-Type: text/html" + ending + ending).encode())
+            connectionSocket.send(b"<!DOCTYPE html><html><body><p>Error 404: File Not Found</p></body></html>")
+        time.sleep(1)
 
     serverSocket.close()
 
