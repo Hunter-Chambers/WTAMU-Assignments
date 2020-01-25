@@ -16,7 +16,6 @@ def main():
     request = connectionSocket.recv(1024).decode()
     request = request.split('\n')
 
-
     if ("GET" in request[0]):
         if ('\r' in request[0]):
             ending = WINDOWS_NL
@@ -24,7 +23,6 @@ def main():
             ending = UNIX_NL
 
         if (' / ' in request[0] or ' /index.html ' in request[0]):
-            print("correct request")
             status = "HTTP/1.1 200 OK" + ending
             header = "Content-Type: text/html" + ending + ending
             connectionSocket.send(status.encode())
@@ -33,7 +31,6 @@ def main():
             connectionSocket.send(f.read().encode())
             f.close()
         else:
-            print("incorrect request")
             connectionSocket.send(("HTTP/1.1 404 NOT FOUND" + ending).encode())
             connectionSocket.send(("Content-Type: text/html" + ending + ending).encode())
             connectionSocket.send(b"<!DOCTYPE html><html><body><p>Error 404: File Not Found</p></body></html>")
