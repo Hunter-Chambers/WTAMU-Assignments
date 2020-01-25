@@ -1,12 +1,19 @@
 #!/usr/bin/env python3
 import socket
 import time
+import sys
 
 WINDOWS_NL = "\r\n"
 UNIX_NL = "\n"
 
 def main():
     serverPort = 8080
+    if (len(sys.argv) > 1):
+        try:
+            serverPort = int(sys.argv[1])
+        except ValueError:
+            print("Invalid port number. Port will default to 8080.")
+            time.sleep(1)
     serverSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     serverSocket.bind(('', serverPort))
     serverSocket.listen(1)
