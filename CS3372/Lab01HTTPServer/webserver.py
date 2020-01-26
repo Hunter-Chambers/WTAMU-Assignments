@@ -21,15 +21,17 @@ def main():
 
     connectionSocket, addr = serverSocket.accept()
     request = connectionSocket.recv(1024).decode()
-    request = request.split('\n')
+    #request = request.split('\n')
 
-    if ("GET" in request[0]):
+    #if ("GET" in request[0]):
+    if ("GET" == request[:3]):
         if ('\r' in request[0]):
             ending = WINDOWS_NL
         else:
             ending = UNIX_NL
 
-        if (' / ' in request[0] or ' /index.html ' in request[0]):
+        #if (' / ' in request[0] or ' /index.html ' in request[0]):
+        if (' / ' == request[3:6] or ' /index.html ' == request[3:16]):
             status = "HTTP/1.1 200 OK" + ending
             header = "Content-Type: text/html" + ending + ending
             connectionSocket.send(status.encode())
