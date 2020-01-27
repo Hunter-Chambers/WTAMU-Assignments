@@ -26,13 +26,14 @@ bag::size_type bag::erase(const value_type& target) {
     size_type number_removed = 0;
 
     //STUDENT IMPLEMENTATION HERE
-    do {
+    // do not use do-while, because
+    // this->used could be 0
+    while (index < used) {
         if (data[index] == target) {
             data[index] = data[--used];
             number_removed++;
-        }
-        else index++;
-    } while (index < used);
+        } else index++;
+    }
 
     return number_removed;
 }

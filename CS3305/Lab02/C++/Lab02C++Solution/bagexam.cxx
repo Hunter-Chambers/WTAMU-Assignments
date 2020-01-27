@@ -208,8 +208,8 @@ int test3( ) {
         }
     cout << "passed.\n";        
 
-    delete oldbytes;
-    delete newbytes;
+    delete [] oldbytes;
+    delete [] newbytes;
 
     cout << "Assignment operator seems okay." << endl;
     return POINTS[3];
