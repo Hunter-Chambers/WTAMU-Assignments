@@ -1,15 +1,34 @@
 #!/usr/bin/python
 
 import socket
+import ssl
+import base64
+import getpass
 
 
 def main():
-    serverName = input("Please input the server you wish to connect to: ")
+    choice = ""
+    while (choice != "Y" and choice != "N"):
+        serverName = input("Please input the server you wish to connect to: ")
+        choice = input("Will you need to authenticate " +
+                       "on this server? (Y/N) ").upper()
+        if (choice == "Y"):
+            # use this port if authentication is required
+            port = 465
+        elif (choice == "N"):
+            port = 25
+        else:
+            input("\nInvalid option. Press Enter to continue...")
+            print()
 
-    mailServer = (serverName, 25)
+    mailServer = (serverName, port)
     clientSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
     print("\nConnecting to", mailServer[0], end='......')
+
+    if (choice == "Y"):
+        # establish an ssl socket if authentication is required
+        clientSocket = ssl.wrap_socket(clientSocket)
 
     try:
         clientSocket.connect(mailServer)
@@ -24,12 +43,34 @@ def main():
         # define response if failed to connect
         response = "550"
 
-    # if status code 220 OK was received
+    # if status code 220 OK was sent
     if (response[:3] == "220"):
-        # EHLO begins SMTP server/client interaction
+        # EHLO begins smtp server/client interaction
         clientSocket.send(b"EHLO SMTPClient\r\n")
         response = clientSocket.recv(4096).decode()
         # print("Server response after EHLO command:", response)
+
+        if (choice == "Y"):
+            clientSocket.send(b"AUTH LOGIN\r\n")
+            response = clientSocket.recv(4096).decode()
+            print("Message after AUTH LOGIN command:", response)
+
+            usr = input("Please input your username: ")
+            print(usr)
+            usr = usr.encode()
+            usr = base64.b64encode(usr)
+            clientSocket.send(usr)
+            clientSocket.send(b"\r\n")
+            response = clientSocket.recv(4096).decode()
+            print("Message after user sent:", response)
+
+            pwd = getpass.getpass("Please input your password: ")
+            pwd = pwd.encode()
+            pwd = base64.b64encode(pwd)
+            clientSocket.send(pwd)
+            clientSocket.send(b"\r\n")
+            response = clientSocket.recv(4096).decode()
+            print("Message after pwd sent:", response)
 
         # wait until user enters valid email
         valid = False
@@ -84,11 +125,12 @@ def main():
         clientSocket.send(subjectInfo.encode())
 
         print()
+
+        # send the actual message of the email
         print("Please input the body of the email.")
         print("Enter '.' (without the quotes) on a line by",
               "itself to finish the message.")
 
-        # send the actual message of the email and
         # continue sending user input until user
         # sends a '.' on a line by itself
         msg = ""
@@ -97,10 +139,11 @@ def main():
             msg = (msg + "\r\n")
             clientSocket.send(msg.encode())
 
+        response = clientSocket.recv(4096).decode()
+
         print()
 
         # display if the server accepted the email or not
-        response = clientSocket.recv(4096).decode()
         print("Server response after email has been sent:", response)
 
         # close connection
@@ -110,8 +153,7 @@ def main():
     else:
         print("Status code 220 was not received.")
 
-    # shutdown and close socket
-    clientSocket.shutdown(socket.SHUT_RDWR)
+    # close socket
     clientSocket.close()
 
     print("Program will now close.")

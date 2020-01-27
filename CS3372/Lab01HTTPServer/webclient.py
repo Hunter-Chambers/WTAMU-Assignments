@@ -7,11 +7,11 @@ s.connect((socket.gethostname(), int(sys.argv[1])))
 
 s.sendall(b"GET /" + sys.argv[2].encode() + b" HTTP/1.1\r\n")
 
-msg = s.recv(1024)
-print(msg.decode())
-msg = s.recv(1024)
-print(msg.decode())
-msg = s.recv(1024)
-print(msg.decode())
+msg = s.recv(1024).decode()
+print(msg)
+msg = s.recv(1024).decode()
+print(msg)
+msg = s.recv(1024).decode()
+print(msg)
 
 s.close()
