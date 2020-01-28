@@ -69,9 +69,9 @@ def main():
                                    ending + ending).encode())
 
             # send basic 404 message
-            connectionSocket.send(("<!DOCTYPE html><html><body><p>" +
+            connectionSocket.send(("<!DOCTYPE html><html><body><h1>" +
                                    "Error 404: File Not Found" +
-                                   "</p></body></html>").encode())
+                                   "</h1></body></html>").encode())
 
         # waiting 1sec ensures all content can be
         # sent in time before this server closes
