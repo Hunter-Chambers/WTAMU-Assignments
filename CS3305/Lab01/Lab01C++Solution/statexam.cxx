@@ -22,76 +22,98 @@ int test1( ) {
     int points = 0;
 
     int i;
-    double r = 0;
+    double r = 0.0;
+    double rsq = 0.0;
 
     if (s.length( ) || t.length( )) return 0;
-    points += 3;
+    points += 2;
+    cout << "Test1 -- part 1 OK \n";
 
-    if (s.sum( ) || t.sum( )) return 0;
-    points += 3;
+    if (s.sum_X( ) || t.sum_X( )) return 0;
+    points += 2;
+    cout << "Test1 -- part 2 OK \n";
 
-    try {
-        s.mean(); //should fail
-        return 0;
-    }
-    catch (domain_error e) { 
-        points += 4;
-    }
+    if ( !isnan( s.mean() ) ) return 0;
+    cout << "Test1 -- part 2a OK \n";
+    points += 3;
 
     for (i = 1; i <= 10000; i++) {
-	s.next(i);
+	s.nextNumber(i);
 	r += i;
+        rsq += (i * i);
     };
 
-    if (t.length( ) || t.sum( )) return 0;
-    points += 3;
+    if (t.length( ) || t.sum_X( )) return 0;
+    points += 2;
+    cout << "Test1 -- part 3 OK \n";
 
     if (s.length( ) != 10000) return 0;
-    points += 5;
+    points += 4;
+    cout << "Test1 -- part 4 OK \n";
 
-    if (!close(s.sum( ), r)) return 0;
-    points += 5;
+    if (!close(s.sum_X( ), r)) return 0;
+    points += 4;
+    cout << "Test1 -- part 5 OK \n";
 
-    if (!close(s.mean( ), r/10000)) return 0;
+    if (!close(s.mean( ), r/10000.0)) return 0;
     points += 5;
+    cout << "Test1 -- part 6 OK \n";
+
+    double mean = r/10000.0;
+    double stdDev = sqrt( rsq/10000.0 - mean*mean );
+    //cout << "Test stdDev is " << stdDev << endl;
+    //cout << "statistician's stdDev() is " << s.stdDev() << endl;
+
+    if ( !close(s.stdDev(), stdDev ) ) return 0;
+    cout << "Test1 -- part 7 OK \n";
+    points += 6;
 
     
     // Reset and then retest everything
     s.reset( );
     t.reset( );
-    r = 0;
+    r = 0.0;
+    rsq = 0.0;
     
     if (s.length( ) || t.length( )) return 0;
-    points += 3;
+    cout << "Test1 -- part 8 OK \n";
+    points += 2;
 
-    if (s.sum( ) || t.sum( )) return 0;
-    points += 3;
+    if (s.sum_X( ) || t.sum_X( )) return 0;
+    cout << "Test1 -- part 9 OK \n";
+    points += 2;
 
-    try {
-        s.mean(); //should fail
-        return 0;
-    }
-    catch (domain_error e) { 
-        points += 5;
-    }
+    if ( !isnan( s.mean() ) ) return 0;
+    points += 4;
+    cout << "Test1 -- part 10 OK \n";
 
     for (i = 1; i <= 10000; i++) {
-	s.next(i);
+	s.nextNumber(i);
 	r += i;
+        rsq += (i * i);
     };
 
-    if (t.length( ) || t.sum( )) return 0;
-    points += 3;
+    if (t.length( ) || t.sum_X( )) return 0;
+    points += 2;
+    cout << "Test1 -- part 11 OK \n";
 
     if (s.length( ) != 10000) return 0;
+    cout << "Test1 -- part 12 OK \n";
+    points += 2;
+
+    if (!close(s.sum_X( ), r)) return 0;
+    cout << "Test1 -- part 13 OK \n";
+    points += 2;
+
+    if (!close(s.mean( ), r/10000.0)) return 0;
+    cout << "Test1 -- part 14 OK \n";
     points += 3;
 
-    if (!close(s.sum( ), r)) return 0;
-    points += 3;
-
-    if (!close(s.mean( ), r/10000)) return 0;
-    points += 3;
-
+    mean = r/10000.0;
+    stdDev = sqrt( rsq/10000.0 - mean*mean );
+    if ( !close(s.stdDev(), stdDev) ) return 0;
+    cout << "Test1 -- part 15 OK \n";
+    points += 6;
 
     cout << "points from this test " << points << endl;
     return points;
@@ -99,53 +121,56 @@ int test1( ) {
 
 int test2( ) {
     // Test program for minimum/maximum statistician functions.
-    // Returns 12 if everything goes okay; otherwise returns 0.
+    // Returns 10 if everything goes okay; otherwise returns 0.
 
     statistician s, t;
     int points = 0;
 
     if (s.length( ) || t.length( )) return 0;
     points += 1;
-    if (s.sum( ) || t.sum( )) return 0;
+    cout << "Test 2 -- part 1 OK \n";
+
+    if (s.sum_X( ) || t.sum_X( )) return 0;
+    cout << "Test 2 -- part 2 OK \n";
     points += 1;
 
-    try {
-        s.minimum(); //should fail
-        return 0;
-    }
-    catch (domain_error e) {
-        points += 1;
-    }
-    try {
-        s.maximum(); //should fail
-        return 0;
-    }
-    catch (domain_error e) {
-        points += 1;
-    }
+    if ( !isnan( s.minimum() ) ) return 0;
+    cout << "Test 2 -- part 3 OK \n";
+    points += 1;
+
+    if ( !isnan( s.maximum() ) ) return 0;
+    cout << "Test 2 -- part 4 OK \n";
+    points += 1;
 
     double r = 1.39804e-76;
     r = 1/r;
     //cout << "r is now " << r << endl;
-    s.next(r);
+    s.nextNumber(r);
     if ((s.minimum( ) != r) || (s.maximum( ) != r)) return 0;
+    cout << "Test 2 -- part 5 OK \n";
     points += 2;
 
     r *= -1;
-    t.next(r);
+    t.nextNumber(r);
     if ((t.minimum( ) != r) || (t.maximum( ) != r)) return 0;
+    cout << "Test 2 -- part 6 OK \n";
     points += 2;
 
     statistician u;
-    u.next(100); u.next(-1); u.next(101); u.next(3);
+    u.nextNumber(100); u.nextNumber(-1); u.nextNumber(101); u.nextNumber(3);
     if ((u.minimum( ) != -1) || (u.maximum( ) != 101)) return 0;
+    cout << "Test 2 -- part 7 OK \n";
     points += 2;
 
+    /*
     statistician *up = new statistician();
-    (*up).next(100); up->next(-1); up->next(101); (*up).next(3);
+    up->nextNumber(100); up->nextNumber(-1); up->nextNumber(101); (*up).nextNumber(3);
     if ((up->minimum( ) != -1) || (up->maximum( ) != 101)) return 0;
+    cout << "Test 2 -- part 8 OK \n";
     points += 2;
+
     delete up;
+    */
 
     cout << "points from this test " << points << endl;
     return points;
@@ -159,13 +184,13 @@ int test3( ) {
     int points = 0;
 
     if (s.length( ) || t.length( )) return 0;
-    if (s.sum( ) || t.sum( )) return 0;
+    if (s.sum_X( ) || t.sum_X( )) return 0;
 
-    t.next(5);
-    u.next(0); u.next(10); u.next(10); u.next(20);
+    t.nextNumber(5);
+    u.nextNumber(0); u.nextNumber(10); u.nextNumber(10); u.nextNumber(20);
 
     v = s + s;
-    if (v.length( ) || v.sum( )) return 0;
+    if (v.length( ) || v.sum_X( )) return 0;
     points += 2;
 
     v = s + u;
@@ -178,7 +203,7 @@ int test3( ) {
 
     v = t + u;
     if (v.length( ) != 5) return 0;
-    if (!close(v.sum( ), 45)) return 0;
+    if (!close(v.sum_X( ), 45)) return 0;
     if (v.minimum( ) != 0) return 0;
     if (v.maximum( ) != 20) return 0;
     if (!close(v.mean( ), 45.0/5)) return 0;
@@ -186,7 +211,7 @@ int test3( ) {
 
     v = v + t;
     if (v.length( ) != 6) return 0;
-    if (!close(v.sum( ), 50)) return 0;
+    if (!close(v.sum_X( ), 50)) return 0;
     if (v.minimum( ) != 0) return 0;
     if (v.maximum( ) != 20) return 0;
     if (!close(v.mean( ), 50.0/6)) return 0;
@@ -204,13 +229,13 @@ int test4( ) {
     int points = 0;
 
     if (s.length( ) || t.length( )) return 0;
-    if (s.sum( ) || t.sum( )) return 0;
+    if (s.sum_X( ) || t.sum_X( )) return 0;
 
-    u.next(0); u.next(10); u.next(10); u.next(20);
+    u.nextNumber(0); u.nextNumber(10); u.nextNumber(10); u.nextNumber(20);
 
     s = 2*u;
     if (s.length( ) != 4) return 0;
-    if (!close(s.sum( ), 80)) return 0;
+    if (!close(s.sum_X( ), 80)) return 0;
     if (s.minimum( ) != 0) return 0;
     if (s.maximum( ) != 40) return 0;
     if (!close(s.mean( ), 80.0/4)) return 0;
@@ -218,7 +243,7 @@ int test4( ) {
 
     s = -2*u;
     if (s.length( ) != 4) return 0;
-    if (!close(s.sum( ), -80)) return 0;
+    if (!close(s.sum_X( ), -80)) return 0;
     if (s.minimum( ) != -40) return 0;
     if (s.maximum( ) != 0) return 0;
     if (!close(s.mean( ), -80.0/4)) return 0;
@@ -226,7 +251,7 @@ int test4( ) {
 
     s = 0*u;
     if (s.length( ) != 4) return 0;
-    if (!close(s.sum( ), 0)) return 0;
+    if (!close(s.sum_X( ), 0)) return 0;
     if (s.minimum( ) != 0) return 0;
     if (s.maximum( ) != 0) return 0;
     if (!close(s.mean( ), 0)) return 0;
@@ -234,7 +259,7 @@ int test4( ) {
 
     s = 10 * t;
     if (s.length( ) != 0) return 0;
-    if (s.sum( ) != 0) return 0;
+    if (s.sum_X( ) != 0) return 0;
     points += 2;
 
     cout << "points from this test " << points << endl;
@@ -248,26 +273,34 @@ int test5( ) {
     statistician s, t, u, v, w, x;
     int points = 0;
 
-    if (s.length( ) || t.length( )) return 0;
-    if (s.sum( ) || t.sum( )) return 0;
-
-    t.next(10);
-    u.next(0); u.next(10); u.next(10); u.next(20);
-    v.next(5); v.next(0); v.next(20); v.next(15);
-    w.next(0);
-    x.next(0); x.next(0);
+    t.nextNumber(10);
+    u.nextNumber(0); u.nextNumber(10); u.nextNumber(10); u.nextNumber(20);
+    v.nextNumber(5); v.nextNumber(0); v.nextNumber(20); v.nextNumber(15);
+    w.nextNumber(0);
+    x.nextNumber(0); x.nextNumber(0);
     
     if (!(s == s)) return 0;
-    points += 1;
-    if (s == t) return 0;
-    points += 1;
-    if (t == s) return 0;
+    cout <<"Test 5 -- part 1 OK \n";
     points += 2;
+
+    if (s == t) return 0;
+    cout <<"Test 5 -- part 2 OK \n";
+    points += 2;
+
+    if (t == s) return 0;
+    cout <<"Test 5 -- part 3 OK \n";
+    points += 2;
+
     if (u == t) return 0;
     points += 2;
-    if (!(u == v)) return 0;
+    cout <<"Test 5 -- part 4 OK \n";
+
+    if (u == v) return 0;
     points += 2;
+    cout <<"Test 5 -- part 5 OK \n";
+
     if (w == x) return 0;
+    cout <<"Test 5 -- part 6 OK \n";
     points += 2;
 
     cout << "points from this test " << points << endl;
@@ -288,7 +321,7 @@ int main( ) {
     else cerr << "Test 1 failed." << endl << endl; 
  
     cerr << "\nTEST 2:" << endl;
-    cerr << "Testing minimum and maximum member functions (12 points).\n";
+    cerr << "Testing minimum and maximum member functions (10 points).\n";
     result = test2( );
     value += result;
     if (result > 0) cerr << "Test 2 passed." << endl << endl;
@@ -309,7 +342,7 @@ int main( ) {
     else cerr << "Test 4 failed." << endl << endl; 
 
     cerr << "\nTEST 5:" << endl;
-    cerr << "Testing the == operator (10 points).\n";
+    cerr << "Testing the == operator (12 points).\n";
     result = test5( );
     value += result;
     if (result > 0) cerr << "Test 5 passed." << endl << endl;

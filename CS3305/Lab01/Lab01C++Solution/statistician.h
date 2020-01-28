@@ -7,7 +7,7 @@
 /** *************************************************************
  * @file        statistician.cxx
  * @author      H. Paul Haiduk
- * @date        09/10/2018
+ * @date        01/15/2020
  * @version     0.9
  *
  * @brief       This class models a simple statistician.
@@ -20,9 +20,10 @@
 
 class statistician {
 
-    // Class invariant:  count, total, tinyest, and largest
+    // Class invariant:  N, sumX, sumXsq, smallest, and largest
     // maintain state of the statistician.  Assignments and the
-    // copy constructor may be used with statistician objects.
+    // copy constructor may be used with statistician objects;
+    // thus value semanticis are supported
 
     public:
         // CONSTRUCTORS
@@ -51,7 +52,7 @@ class statistician {
          *              of r
          * @return      void
          */
-        void next(double r);
+        void nextNumber(double r);
 
         /**
          * @brief       sets the internal state to be that
@@ -91,14 +92,6 @@ class statistician {
         int length( ) const;
 
         /**
-         * @brief       accessor returning sum of all values given
-         *              to this statistician
-         * @return      sum of all values given to this statistician
-         *              since creation or reset
-         */
-        double sum( ) const;
-
-        /**
          * @brief       accessor returning the arithetic average of
          *              all values given to this statistician
          * @return      arithmetic average of all values given to 
@@ -123,6 +116,30 @@ class statistician {
         double maximum( ) const;
 
         /**
+         * @brief       accessor returning sum of all values given
+         *              to this statistician
+         * @return      sum of all values given to this statistician
+         *              since creation or reset
+         */
+        double sum_X( ) const;
+
+        /**
+         * @brief       accessor returning sum of all values given
+         *              to this statistician squared
+         * @return      sum of all values given to this statistician
+         *              since creation or reset squared
+         */
+        double sum_Xsq( ) const;
+
+        /**
+         * @brief       accessor returning the standard deviation of
+         *              all values given to this statistician
+         * @return      standard deviation of all values given to 
+         *              this statistician since creation or reset
+         */
+        double stdDev( ) const;
+
+        /**
          * @brief       accessor returning a string representation of
          *              this statistician -- suitable for display or print
          * @return      string
@@ -136,26 +153,27 @@ class statistician {
          *              maximum in case scale is negative
          * @param       scale -- a double used to multiply state of
          *              parameter s
-         * @param       s -- a reference to another statistician
+         * @param       s -- a const reference to another statistician
          * @return      a new statistician that is the equal to the
          *              scaling of s
          */
         friend 
             statistician operator *
-                (double scale, statistician& s);
+                (double scale, const statistician& s);
         /**
          * @brief       operator + to "add" s1 and s2
-         * @param       s1 -- a copy of some statistician
-         * @param       s2 -- a copy of some statistician
+         * @param       s1 -- a const reference to some statistician
+         * @param       s2 -- a const reference to some statistician
          * @return      a new statistician
          */
         friend 
             statistician operator +
                 (const statistician& s1, const statistician& s2);
     private:
-        int    count;    // How many numbers in the sequence
-        double total;    // The sum of all the numbers in the sequence
-        double tinyest;  // The smallest number in the sequence
+        int    N;        // How many numbers in the sequence
+        double sumX;     // The sum of all the numbers in the sequence
+        double sumXsq;   // The sum of all the numbers squared
+        double smallest; // The smallest number in the sequence
         double largest;  // The largest number in the sequence
 
 };  //NOTE:  the semi-colon is required at end of the class

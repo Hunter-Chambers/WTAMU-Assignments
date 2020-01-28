@@ -25,7 +25,7 @@ double get_number( );
 int main( ) {
     statistician s1, s2, s3;  // Three statisticians for us to play with
     char choice;              // A command character entered by the user
-    double x;                 // Value for multiplication x*s1
+    double scale;             // Value for multiplication scale*s1
 
     cout << "Three statisticians s1, s2, and s3 are ready to test." << endl;
 
@@ -37,22 +37,22 @@ int main( ) {
             case 'R': cout << "Which one should I reset (1, 2, 3) " << endl;
                       choice = get_user_command( );
                       switch (choice) {
-			  case '1': s1.reset( );
-                                    break;
-			  case '2': s2.reset( );
-                                    break;
-			  case '3': s3.reset( );
-                                    break;
+			  case '1': s1.reset( ); break;
+			  case '2': s2.reset( ); break;
+			  case '3': s3.reset( ); break;
                           default : cout << "Try again -- bad choice\n";
                                     continue;
                       }
                       cout << "Reset activated for s" << choice << "." << endl;
                       break;
-            case '1': s1.next(get_number( ));
+            case '1': s1.nextNumber(get_number( ));
                       break;
-            case '2': s2.next(get_number( ));
+            case '2': s2.nextNumber(get_number( ));
                       break;
-            case '3': s3.next(get_number( ));
+            case '3': s3.nextNumber(get_number( ));
+                      break;
+            case 'C': s3 = s1;
+                      cout << "\tstatistician3 set to a copy of statistician1\n";
                       break;
             case 'D': cout << "s1 = " << s1 << endl;
                       cout << "s2 = " << s2 << endl;
@@ -66,10 +66,10 @@ int main( ) {
             case '+': s3 = s1 + s2;
                       cout << "s3 has been set to s1 + s2" << endl;
                       break;
-            case '*': cout << "Please type a value for x: ";
-                      cin >> x;
-                      s3 = x * s1;
-                      cout << "s3 has been set to " << x << " * s1" << endl;
+            case '*': cout << "Please type a value for scale: ";
+                      cin >> scale;
+                      s3 = scale * s3;
+                      cout << "s3 has been set to " << scale << " * s3" << endl;
 		      break;
             case 'Q': cout << "Ridicule is the best test of truth." << endl;
                       break;
@@ -89,10 +89,11 @@ void print_menu( ) {
     cout << " 1  Add a new number to the 1st statistician s1" << endl;
     cout << " 2  Add a new number to the 2nd statistician s2" << endl;
     cout << " 3  Add a new number to the 3rd statistician s3" << endl;
+    cout << " C  Set statistician 3 to a copy of statistician 1" << endl;
     cout << " D  Display the state of the statistians s1, s2 and s3" << endl;
     cout << " E  Test whether s1 == s2" << endl;
     cout << " +  Set the third statistician s3 equal to s1 + s2" << endl;
-    cout << " *  Set the third statistician s3 equal to x*s1" << endl;
+    cout << " *  Set the third statistician s3 equal to scale*s3" << endl;
     cout << " Q  Quit this test program" << endl;
 }
 
