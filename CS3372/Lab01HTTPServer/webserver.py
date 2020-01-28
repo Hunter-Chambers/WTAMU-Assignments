@@ -1,20 +1,38 @@
 #!/usr/bin/env python3
-import socket
-import time
-import sys
+import socket  # used to create the web server
+import time    # used to pause briefly before server shutdown
+import sys     # used to accept command line input
 
-# use this as line-ending if '\r'
-# is found in the request
-WINDOWS_NL = "\r\n"
 
-# otherwise use this line-ending
-UNIX_NL = "\n"
+def send200(connectionSocket):
+    # send status code 200
+    connectionSocket.send(("HTTP/1.1 200 OK\r\n").encode())
+
+    # return the type of content that is
+    # about to come through
+    connectionSocket.send(("Content-Type: text/html\r\n\r\n").encode())
+
+
+def send404(connectionSocket):
+    # send status code 404
+    connectionSocket.send(("HTTP/1.1 404 NOT FOUND\r\n").encode())
+
+    # send the type of content that is
+    # about to come through
+    connectionSocket.send(("Content-Type: text/html\r\n\r\n").encode())
+
+    # send basic 404 message
+    connectionSocket.send(("<!DOCTYPE html><html><body><h1>" +
+                           "Error 404: File Not Found" +
+                           "</h1></body></html>").encode())
 
 
 def main():
     # default to port 8080
     serverPort = 8080
+
     if (len(sys.argv) > 1):
+        # check if user specified a port
         try:
             # change to the port that
             # the user has specified
@@ -31,53 +49,54 @@ def main():
     # establish connection
     connectionSocket, addr = serverSocket.accept()
 
-    # receive request from client
-    request = connectionSocket.recv(4096).decode()
+    # receive request from client and split() it for easy parsing
+    request = connectionSocket.recv(4096).decode().split('\n')
 
-    # if the client has made a GET request
-    if ("GET" == request[:3]):
-        # update our line-ending based
-        # on which one exists in the request
-        if ('\r' in request):
-            ending = WINDOWS_NL
-        else:
-            ending = UNIX_NL
+    if ("GET" == request[0][:3]):
+        # if the client has made a GET request,
+        # split() line one of the request to parse out the requested file
+        lineOne = request[0].split(' ')
 
-        # if the client has requested / or /index.html
-        if (' / ' == request[3:6] or ' /index.html ' == request[3:16]):
-            # return status code 200
-            status = "HTTP/1.1 200 OK" + ending
-            connectionSocket.send(status.encode())
+        # add '.' to the front to correct the directory path
+        fileRequest = ('.' + lineOne[1])
 
-            # return the type of content that is
-            # about to come through
-            header = "Content-Type: text/html" + ending + ending
-            connectionSocket.send(header.encode())
+        if (fileRequest == "./"):
+            # if the client requested / (root),
+            # send status code 200
+            send200(connectionSocket)
 
-            # send contents of file
-            f = open("index.html")
-            connectionSocket.send(f.read().encode())
-            f.close()
-        else:
-            # if the client has not requested the right file,
-            # send status code 404
-            connectionSocket.send(("HTTP/1.1 404 NOT FOUND" + ending).encode())
-
-            # send the type of content that is
-            # about to come through
-            connectionSocket.send(("Content-Type: text/html" +
-                                   ending + ending).encode())
-
-            # send basic 404 message
+            # send root page info
             connectionSocket.send(("<!DOCTYPE html><html><body><h1>" +
-                                   "Error 404: File Not Found" +
+                                   "Welcome to my page!" +
                                    "</h1></body></html>").encode())
+        else:
+            try:
+                # try opening the requested file
+                f = open(fileRequest)
 
-        # waiting 1sec ensures all content can be
-        # sent in time before this server closes
-        time.sleep(1)
+                # if file opened successfully,
+                # return status code 200
+                send200(connectionSocket)
 
-    # shutdown and close socket
+                # send contents of the requested file
+                connectionSocket.send(f.read().encode())
+
+                # close file
+                f.close()
+            except Exception:
+                # send 404 if error occured
+                send404(connectionSocket)
+    else:
+        # GET request was not made, send 404
+        send404(connectionSocket)
+
+    # waiting 1sec ensures all content can be
+    # sent in time before this server closes
+    time.sleep(1)
+
+    # shutdown and close sockets
+    connectionSocket.shutdown(socket.SHUT_RDWR)
+    connectionSocket.close()
     serverSocket.shutdown(socket.SHUT_RDWR)
     serverSocket.close()
 
