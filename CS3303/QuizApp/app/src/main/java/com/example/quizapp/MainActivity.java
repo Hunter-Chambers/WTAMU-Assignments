@@ -74,8 +74,8 @@ public class MainActivity extends AppCompatActivity {
     }
     private void verify(boolean b){
         if(questionBank[i].getAnswer() == b)
-            Toast.makeText(MainActivity.this, "Correct answwer", Toast.LENGTH_SHORT).show();
+            Toast.makeText(MainActivity.this, "Correct answer", Toast.LENGTH_SHORT).show();
         else
-            Toast.makeText(MainActivity.this, "Sorry your answer is incorrect", Toast.LENGTH_SHORT).show();
+            Toast.makeText(MainActivity.this, "Sorry, your answer is incorrect", Toast.LENGTH_SHORT).show();
     }
 }
