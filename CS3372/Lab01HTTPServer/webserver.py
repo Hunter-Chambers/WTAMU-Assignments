@@ -94,10 +94,7 @@ def main():
     # sent in time before this server closes
     time.sleep(1)
 
-    # shutdown and close sockets
-    connectionSocket.shutdown(socket.SHUT_RDWR)
-    connectionSocket.close()
-    serverSocket.shutdown(socket.SHUT_RDWR)
+    # shutdown and close socket
     serverSocket.close()
 
 
