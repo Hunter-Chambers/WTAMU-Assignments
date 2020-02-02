@@ -42,6 +42,7 @@ def main():
             input("Press Enter to continue...")
 
     serverSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    serverSocket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
     serverSocket.bind(('', serverPort))
     serverSocket.listen(1)
     print("The server is ready to receive")
