@@ -52,7 +52,7 @@ void bag::ensureCapacity(size_type newCapacity) {
         // into bigger array, deallocate this->data, assign to this->data 
         // the bigger array, etc,
         // STUDENT WORK GOES HERE
-        double* newData = new double[newCapacity];
+        value_type* newData = new value_type[newCapacity];
         copy(data, data + used, newData);
         delete [] data;
         data = newData;
@@ -215,7 +215,7 @@ void bag::trimToSize() {
         //      We must allocate a new smaller array, copy the elements 
         //      from this->data into the smaller array, deallocate this->data,
         //      and then assign to this->data the smaller array
-        double* newData = new double[newCapacity];
+        value_type* newData = new value_type[newCapacity];
         copy(data, data + used, newData);
         delete [] data;
         data = newData;
