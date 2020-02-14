@@ -18,8 +18,12 @@ def main():
     # read or ask for input
     try:
         mask_bits = int(sys.argv[2])
-    except IndexError:
+    except (IndexError, ValueError):
         mask_bits = int(input("Please enter the amount of mask bits: "))
+
+    # throw error if invalid input
+    if (mask_bits < 1 or mask_bits > 32):
+        raise ValueError("Invalid amount of mask bits")
 
     print()
 
