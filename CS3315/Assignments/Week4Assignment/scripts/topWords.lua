@@ -4,20 +4,21 @@
 -- where the word is the key and the number of times
 -- that it appears is its value
 local freq = {}
+local site = io.read("*a")
+io.flush()
+local howMany = io.read("*n")
 
-for line in io.lines('HuckFinn.txt') do
-    -- convert each line of the text to lowercase
-    local lowerline = string.lower(line)
+-- convert each line of the text to lowercase
+local lowerline = string.lower(site)
 
-    -- find all substrings that match the regular expression
-    for word in string.gmatch(lowerline, "[%a']+") do
-        -- update the number of times that the substring
-        -- has appeared so far
-    	if not freq[word] then
-	    freq[word] = 1
-	else
-	    freq[word] = freq[word] + 1
-	end
+-- find all substrings that match the regular expression
+for word in string.gmatch(lowerline, "[%a']+") do
+    -- update the number of times that the substring
+    -- has appeared so far
+    if not freq[word] then
+	freq[word] = 1
+    else
+	freq[word] = freq[word] + 1
     end
 end
 
