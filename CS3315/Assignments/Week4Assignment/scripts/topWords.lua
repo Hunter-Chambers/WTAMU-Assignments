@@ -1,12 +1,16 @@
 #!/usr/bin/env lua
 
+local stopwords = {}
+for line in io.lines('stopwords.txt') do
+    stopwords[line] = line
+end
+
 -- this is a hashmap that will hold key, value pairs
 -- where the word is the key and the number of times
 -- that it appears is its value
 local freq = {}
-local site = io.read("*a")
-io.flush()
-local howMany = io.read("*n")
+
+local site = io.read('*a')
 
 -- convert each line of the text to lowercase
 local lowerline = string.lower(site)
@@ -15,9 +19,9 @@ local lowerline = string.lower(site)
 for word in string.gmatch(lowerline, "[%a']+") do
     -- update the number of times that the substring
     -- has appeared so far
-    if not freq[word] then
+    if (not freq[word] and not stopwords[word]) then
 	freq[word] = 1
-    else
+    elseif freq[word] then
 	freq[word] = freq[word] + 1
     end
 end
