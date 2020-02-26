@@ -1,0 +1,125 @@
+/******************************************************************************
+* A DLNode<Item> provides a generic node for a doubly-linked list;  each node 
+* contains a piece of data (which is a reference to an Item object) and two links;
+* One link is to the previous node if it exists; otherwise, it is null;
+* The other link is to the next node if it exists; otherwise, it is null; 
+* The reference to the Item object can be null.
+*
+* @note
+*   Lists of nodes can be made of any length, limited only by the amount of
+*   free memory in the heap. But beyond Integer.MAX_VALUItem (2,147,483,647),
+*   the answer from listLength is incorrect because of arithmetic
+*   overflow. 
+******************************************************************************/
+public class DLNode<Item> {
+   private DLNode<Item> previous;   
+   private Item data;
+   private DLNode<Item> next;
+
+   public DLNode(Item initialData, DLNode<Item> initialPrevious, DLNode<Item> initialNext) {
+      data = initialData;
+      previous = initialPrevious;
+      next = initialNext;
+   }
+
+   public Item getData( ) {
+      return data;
+   }
+
+   public void setData(Item newData)   {
+      data = newData;
+   }                                                               
+
+   public DLNode<Item> getPrevious( ) {
+      return previous;                                               
+   } 
+   
+   public void setPrevious(DLNode<Item> newLink) {                    
+      previous = newLink;
+   }
+
+   public DLNode<Item> getNext( ) {
+      return next;                                               
+   } 
+   
+   public void setNext(DLNode<Item> newLink) {                    
+      next = newLink;
+   }
+
+   public void addBefore(Item element) {
+       DLNode<Item> newNode = new DLNode<Item>( element, this.previous, this );
+       if ( this.previous != null )
+           this.previous.next = newNode;
+       this.previous = newNode;
+   }
+
+   **/
+   public void addAfter(Item element) {
+       DLNode<Item> newNode = new DLNode<Item>( element, this, this.next );
+       if ( this.next != null )
+           this.next.previous = newNode;
+       this.next = newNode;
+   }          
+
+   public void removeBefore( )   {
+      if ( this.previous == null )
+          throw new IllegalArgumentException("No node before this node");
+      DLNode<Item> trash = this.previous;
+      if ( trash.previous != null ) trash.previous.next = this;
+      this.previous = trash.previous;
+      //next steps are designed to assist in memory management
+      trash.data = null;
+      trash.previous = trash.next = null;
+      trash = null;
+   }          
+   
+   public void removeAfter( )   {
+      if ( this.next == null )
+          throw new IllegalArgumentException("No node after");
+      DLNode<Item> trash = this.next;
+      if ( trash.next != null ) trash.next.previous = this;
+      this.next = trash.next;
+      //next steps are designed to assist in memory management
+      trash.data = null;
+      trash.previous = trash.next = null;
+      trash = null;
+   }          
+    
+
+   /**
+   * Search for a particular piece of data in a linked list.
+   * @param head
+   *   the head reference for a linked list (which may be an empty list in
+   *   which case the head is null)
+   * @param target
+   *   a target to search for
+   * @return
+   *   The return value is a reference to the first node that contains the
+   *   specified target. If the target is non-null, then the
+   *   target.equals method is used to find such a node.
+   *   The target may also be null, in which case the return value is a
+   *   reference to the first node that contains a null reference for its
+   *   data. If there is no node that contains the target, then the null
+   *   reference is returned.     
+   **/   
+   public static <Item> DLNode<Item> listSearch(DLNode<Item> head, Item target) {
+      DLNode<Item> cursor;
+      
+      if (target == null) {  
+         // Search for a node in which the data is the null reference.
+         for (cursor = head; cursor != null; cursor = cursor.next)
+            if (cursor.data == null)
+               return cursor;
+      }
+      else {  
+         // Search for a node that contains the non-null target.
+         for (cursor = head; cursor != null; cursor = cursor.next)
+            if (target.equals(cursor.data))
+               return cursor;
+      }
+        
+      return null;
+   }                                           
+
+}
+           
