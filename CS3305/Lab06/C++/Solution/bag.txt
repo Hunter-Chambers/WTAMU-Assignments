@@ -105,48 +105,31 @@ void bag<Item>::insert(const Item& entry) {
     if (cursor == NULL) {
         // Add the first node of the binary search tree:
         root_ptr = new binary_tree_node<Item>(entry);
-        return;
     }
 
     else {
         // Move down the tree and add a new leaf:
-        cursor = root_ptr;
-        /* STUDENT WORK*/
-        bool done = false;
-        while (!done){
-            if (entry <= cursor->data()){
-                if (cursor->left() == NULL){
-                    cursor->left() = new binary_tree_node<Item>(entry);
-                    done = true;
-                }
-                else
-                    cursor = cursor->left();
-            }
-            else{
-                if (cursor->right() == NULL){
-                    cursor->right() = new binary_tree_node<Item>(entry);
-                    done = true;
-                }
-                else
-                    cursor = cursor->right();
-            }
+        /* STUDENT WORK */
+        if (entry < root_ptr->data()) {
+            root_ptr = root_ptr->left();
+            insert(entry);
+            cursor->set_left(root_ptr);
+        } else {
+            root_ptr = root_ptr->right();
+            insert(entry);
+            cursor->set_right(root_ptr);
         }
-        cursor = new binary_tree_node<Item>(entry);
-        return;
+        root_ptr = cursor;
     }
 }
 
 template <class Item>
 bag<Item>& bag<Item>::operator +=(const bag<Item>& addend) {
     /* STUDENT WORK */
-    if (this == &addend){
-        binary_tree_node<Item> *addroot_ptr;
-        addroot_ptr = tree_copy(addend.root_ptr);
-        insert_all(addroot_ptr);
-        tree_clear(addroot_ptr);
-    }
-    else
-        insert_all(addend.root_ptr);
+    if (addend.root_ptr == NULL) return *this;
+    bag<Item> temp = addend;
+    insert_all(temp.root_ptr);
+
     return *this;
 }
 
@@ -158,7 +141,6 @@ bag<Item>& bag<Item>::operator =(const bag<Item>& source) {
     /* STUDENT WORK */
     tree_clear(root_ptr);
     insert_all(source.root_ptr);
-    //root_ptr = tree_copy(source.root_ptr);
 
     return *this;
 }
@@ -176,23 +158,11 @@ typename bag<Item>::size_type bag<Item>::count(const Item& target) const {
 
     if ( cursor == NULL ) return 0;
     /* STUDENT WORK */
-    while (cursor != NULL){
-        if (cursor->data() == target){
-            ++answer;
-            if (target > cursor->data())
-                cursor = cursor->right();
-            else
-                cursor = cursor->left();
-        }
-        else if (cursor->data() != target){
-            if (target > cursor->data())
-                cursor = cursor->right();
-            else
-                cursor = cursor->left();
-        }
+    while (cursor != NULL) {
+        if (target == cursor->data()) answer += 1;
+        if (target < cursor->data()) cursor = cursor->left();
+        else cursor = cursor->right();
     }
-
-
 
     return answer;
 }
@@ -255,17 +225,15 @@ void bst_remove_max(binary_tree_node<Item>*& root_ptr, Item& removed) {
     // Case 1 -- base case
     if ( root_ptr->right() == NULL ) {
     /* STUDENT WORK */
+        binary_tree_node<Item>* old_root_ptr = root_ptr;
         removed = root_ptr->data();
-        binary_tree_node<Item>* trash = root_ptr;
         root_ptr = root_ptr->left();
-        delete trash;
-    } else 
+        delete old_root_ptr;
+    } else {
     /* STUDENT WORK */
         //Case 2 -- there are larger items in the tree
         bst_remove_max(root_ptr->right(), removed);
-
-
-    return;
+    }
 }
 
 template <class Item>
@@ -277,6 +245,7 @@ bool bst_remove(binary_tree_node<Item>*& root_ptr, const Item& target) {
 // (smaller) binary search tree. In this case the function returns true.
 // If target was not in the tree, then the tree is unchanged (and the
 // function returns false).
+    binary_tree_node<Item>* oldroot_ptr;
     
     //Case 1
     if (root_ptr == NULL) { 
@@ -312,7 +281,6 @@ bool bst_remove(binary_tree_node<Item>*& root_ptr, const Item& target) {
        // Target was found and there is no left subtree, so we can
        // remove this node, making the right child be the new root.
     /* STUDENT WORK */
-        binary_tree_node<Item>* oldroot_ptr;
         oldroot_ptr = root_ptr;
         root_ptr = root_ptr->right();
         delete oldroot_ptr;
@@ -348,8 +316,8 @@ typename bag<Item>::size_type bst_remove_all
      ** tricky done recursively and most efficiently.  If you cannot
      ** get there recursively, there is a simple iterative solution.
      */
-    //binary_tree_node<Item>* oldroot_ptr;
-    int removed = 0;
+
+    binary_tree_node<Item>* oldroot_ptr;
 
     if (root_ptr == NULL) {
         // Empty tree
@@ -360,7 +328,7 @@ typename bag<Item>::size_type bst_remove_all
     if (target < root_ptr->data( )) {
         // Continue looking in the left subtree
         /* STUDENT WORK */
-        return bst_remove_all(root_ptr->left(), target); 
+        return bst_remove_all(root_ptr->left(), target);
     }
 
     if (target > root_ptr->data( )) {
@@ -373,12 +341,10 @@ typename bag<Item>::size_type bst_remove_all
         // Target was found and there is no left subtree, so we can
         // remove this node, making the right child be the new root.
         /* STUDENT WORK */
-        binary_tree_node<Item>* oldroot_ptr;
         oldroot_ptr = root_ptr;
         root_ptr = root_ptr->right();
         delete oldroot_ptr;
-        ++removed;
-        return removed + bst_remove_all(root_ptr, target);
+        return 1 + bst_remove_all(root_ptr, target);
     }
     
 
@@ -391,8 +357,7 @@ typename bag<Item>::size_type bst_remove_all
     // might also be a copy of the target).
     /* STUDENT WORK */
     bst_remove_max(root_ptr->left(), root_ptr->data());
-    ++removed;
-    return removed + bst_remove_all(root_ptr, target);
+    return 1 + bst_remove_all(root_ptr, target);
 }
 
 

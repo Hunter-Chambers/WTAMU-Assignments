@@ -119,7 +119,6 @@ void bag<Item>::insert(const Item& entry) {
 template <class Item>
 bag<Item>& bag<Item>::operator +=(const bag<Item>& addend) {
     /* STUDENT WORK */
-
     return *this;
 }
 
