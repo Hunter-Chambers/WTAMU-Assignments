@@ -161,6 +161,8 @@ void table<RecordType>::operator =( const table& source ) {
 
     // STUDENT code here
 
+    if (&source == this) return;
+
     node<RecordType>* temp;
     node<RecordType>* trash;
     for (index = 0; index < TABLE_SIZE; index++) {
