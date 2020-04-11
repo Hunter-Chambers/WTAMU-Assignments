@@ -1,0 +1,7 @@
+NOTE:  If student issues command make at the command line,
+       there will be numerous warnings about unused variabless.
+
+       That is because they haven't yet been used -- it is up
+       to student to write the code that uses these variables.
+
+Prof. Haiduk

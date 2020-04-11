@@ -60,10 +60,6 @@ table<RecordType>::table( ) {
     std::size_t index;
 
     // STUDENT code here
-
-    total_records = 0;
-    for (index = 0; index < TABLE_SIZE; index++)
-        data[index] = NULL;
 }
 
 template <class RecordType>
@@ -72,16 +68,6 @@ table<RecordType>::table( const table& source ) {
 
     // STUDENT code here
 
-    total_records = 0;
-    node<RecordType>* cursor;
-    for (index = 0; index < TABLE_SIZE; index++) {
-        data[index] = NULL;
-        cursor = source.data[index];
-        while (cursor) {
-            insert(cursor->data());
-            cursor = cursor->link();
-        }
-    }
 }
 
 template <class RecordType>
@@ -90,17 +76,6 @@ table<RecordType>::~table( ) {
 
     // STUDENT code here
 
-    node<RecordType>* trash;
-    node<RecordType>* cursor;
-    for (index = 0; index < TABLE_SIZE; index++) {
-        cursor = data[index];
-        while (cursor) {
-            trash = cursor;
-            cursor = cursor->link();
-            delete trash;
-            trash = NULL;
-        }
-    }
 }
 
 template <class RecordType>
@@ -110,16 +85,6 @@ void table<RecordType>::insert(const RecordType& entry) {
     
     // STUDENT code here
 
-    node<RecordType>* cursor = data[index];
-    while (cursor && cursor->data().key != entry.key)
-        cursor = cursor->link();
-
-    if (cursor) cursor->data().data = entry.data;
-    else {
-        node<RecordType>* new_node = new node<RecordType>(entry, data[index]);
-        data[index] = new_node;
-        total_records++;
-    }
 }
 
 template <class RecordType>
@@ -129,54 +94,15 @@ void table<RecordType>::remove(int key) {
 
     // STUDENT code here
 
-    node<RecordType>* precursor = data[index];
-    if (precursor) {
-        node<RecordType>* cursor = precursor->link();
-        if (precursor->data().key == key) {
-            data[index] = cursor;
-            delete precursor;
-            precursor = NULL;
-            total_records--;
-        } else {
-            while (cursor) {
-                if (cursor->data().key == key) {
-                    precursor->set_link(cursor->link());
-                    delete cursor;
-                    cursor = NULL;
-                    total_records--;
-                } else {
-                    precursor = cursor;
-                    cursor = cursor->link();
-                }
-            }
-        }
-    }
 }
 
 template <class RecordType>
 void table<RecordType>::operator =( const table& source ) {
     
-    //size_t index;
+    size_t index;
 
     // STUDENT code here
 
-    node<RecordType>* temp;
-    for (node<RecordType>* trash : data) {
-        while (trash) {
-            temp = trash;
-            trash = trash->link();
-            delete temp;
-            temp = NULL;
-        }
-    }
-    total_records = 0;
-
-    for (node<RecordType>* cursor : source.data) {
-        while (cursor) {
-            insert(cursor->data());
-            cursor = cursor->link();
-        }
-    }
 }
 
 template <class RecordType>
@@ -186,15 +112,6 @@ void table<RecordType>::find(int key, bool& found, RecordType& result) const {
 
     // STUDENT code here
 
-    found = false;
-    node<RecordType>* cursor = data[index];
-    while (!found && cursor) {
-        if (cursor->data().key == key) {
-            found = true;
-            result = cursor->data();
-        }
-        else cursor = cursor->link();
-    }
 }
 
 template <class RecordType>
@@ -205,11 +122,6 @@ bool table<RecordType>::is_present(int key) const {
     node<RecordType>* ptr = data[index];
 
     // STUDENT code here
-
-    while (!found && ptr) {
-        if (ptr->data().key == key) found = true;
-        else ptr = ptr->link();
-    }
 
     return found;
 }
