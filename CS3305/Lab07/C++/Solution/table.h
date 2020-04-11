@@ -100,6 +100,7 @@ table<RecordType>::~table( ) {
             delete trash;
             trash = NULL;
         }
+        data[index] = NULL;
     }
 }
 
@@ -170,6 +171,7 @@ void table<RecordType>::operator =( const table& source ) {
             delete trash;
             trash = NULL;
         }
+        data[index] = NULL;
     }
     total_records = 0;
 
