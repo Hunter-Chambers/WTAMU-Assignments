@@ -114,7 +114,7 @@ void table<RecordType>::insert(const RecordType& entry) {
     while (cursor && cursor->data().key != entry.key)
         cursor = cursor->link();
 
-    if (cursor) cursor->data().data = entry.data;
+    if (cursor) cursor->data() = entry;
     else {
         node<RecordType>* new_node = new node<RecordType>(entry, data[index]);
         data[index] = new_node;
@@ -156,22 +156,26 @@ void table<RecordType>::remove(int key) {
 template <class RecordType>
 void table<RecordType>::operator =( const table& source ) {
     
-    //size_t index;
+    size_t index;
 
     // STUDENT code here
 
     node<RecordType>* temp;
-    for (node<RecordType>* trash : data) {
-        while (trash) {
-            temp = trash;
-            trash = trash->link();
-            delete temp;
-            temp = NULL;
+    node<RecordType>* trash;
+    for (index = 0; index < TABLE_SIZE; index++) {
+        temp = data[index];
+        while (temp) {
+            trash = temp;
+            temp = temp->link();
+            delete trash;
+            trash = NULL;
         }
     }
     total_records = 0;
 
-    for (node<RecordType>* cursor : source.data) {
+    node<RecordType>* cursor;
+    for (index = 0; index < TABLE_SIZE; index++) {
+        cursor = source.data[index];
         while (cursor) {
             insert(cursor->data());
             cursor = cursor->link();
