@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#! python
 
 from scapy.all import *
 import sys
@@ -11,10 +11,10 @@ def main():
         exit()
 
     # read ARP request packet info
-    src_ip = scapy_cap[0][ARP].psrc
-    dst_ip = scapy_cap[0][ARP].pdst
-    src_hw = scapy_cap[0][ARP].hwsrc
-    dst_hw = scapy_cap[0][ARP].hwdst
+    src_ip = scapy_cap[0].psrc
+    dst_ip = scapy_cap[0].pdst
+    src_hw = scapy_cap[0].hwsrc
+    dst_hw = scapy_cap[0].hwdst
 
     print("\n")
     print("Source IP:           ", src_ip)
@@ -24,19 +24,19 @@ def main():
 
     # build up the ARP response packet
     arp_response = Ether()/ARP()
-    arp_response[Ether].dst = src_hw
-    arp_response[Ether].src = "00:0c:29:c5:33:72"
-    arp_response[ARP].hwlen = 6
-    arp_response[ARP].plen = 4
-    arp_response[ARP].op = 2
-    arp_response[ARP].hwsrc = "00:0c:29:c5:33:72"
-    arp_response[ARP].psrc = dst_ip
-    arp_response[ARP].hwdst = src_hw
-    arp_response[ARP].pdst = src_ip
+    arp_response.dst = src_hw
+    arp_response.src = "00:0c:29:c5:33:72"
+    arp_response.hwlen = 6
+    arp_response.plen = 4
+    arp_response.op = 2
+    arp_response.hwsrc = "00:0c:29:c5:33:72"
+    arp_response.psrc = dst_ip
+    arp_response.hwdst = src_hw
+    arp_response.pdst = src_ip
 
-    src_mac = arp_response[ARP].hwsrc
-    dst_mac = arp_response[ARP].hwdst
-    op_code = arp_response[ARP].op
+    src_mac = arp_response.hwsrc
+    dst_mac = arp_response.hwdst
+    op_code = arp_response.op
 
     print("\n")
     print("Source MAC:     ", src_mac)
