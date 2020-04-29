@@ -521,25 +521,30 @@ void insertionsort(int arr[], int n) {
     }
 }
 
-void quickHelperIs(int data[ ], int left, int right) {
+void quickHelperIs(int data[], int left, int right) {
     int pivotIndex;
+
     //create the stack of appropriate fixed size;
     stack<int>* s = new stack<int>;
+
     s->push(left);
     s->push(right);
+
     while(!s->empty()) {
         //take the top pair of values from the stack and set them to left and right
         right = s->top();
         s->pop();
         left = s->top();
         s->pop();
-        if(left >= right) continue;
-        if ( ( right - left) <= 10 ) {
-            int n = right - left + 1;
-            insertionsort( data+left, n );
+
+        if (left >= right) continue;
+
+        if (( right - left) <= 10 ) {
+            int n = (right - left + 1);
+            insertionsort((data + left), n);
         } else {
             pivotIndex = partition(data, left, right);
-            if(pivotIndex - left < right - pivotIndex) {
+            if ((pivotIndex - left) < (right - pivotIndex)) {
                 //smaller chunk goes first
                 s->push(left);
                 s->push(pivotIndex - 1);
@@ -559,8 +564,8 @@ void quickHelperIs(int data[ ], int left, int right) {
     delete s;
 }
 
-void quicksortis(int data[ ], size_t n) {
-    quickHelperIs( data, 0, (int)(n - 1) );
+void quicksortis(int data[], size_t n) {
+    quickHelperIs(data, 0, (int)(n - 1));
 }
 
 //*************************************************************************
@@ -586,7 +591,7 @@ bool empty(int top) {
     return false;
 }
 
-void quickHelperI(int data[ ], int left, int right) {
+void quickHelperI(int data[], int left, int right) {
     int pivotIndex;
 
     //create the stack of appropriate fixed size;
@@ -597,27 +602,27 @@ void quickHelperI(int data[ ], int left, int right) {
     while(!empty(top)) {
         //take the top pair of values from the stack and set them to left and right
         pop(left, right, s, top);
-        if(left >= right) continue;
-        if ( ( right - left) <= 10 ) {
-            int n = right - left + 1;
-            insertionsort( data+left, n );
+        if (left >= right) continue;
+        if (( right - left) <= 10 ) {
+            int n = (right - left + 1);
+            insertionsort((data + left), n);
         } else {
             pivotIndex = partition(data, left, right);
-            if(pivotIndex - left < right - pivotIndex) {
+            if ((pivotIndex - left) < (right - pivotIndex)) {
                 //smaller chunk goes first
-                push(left, pivotIndex - 1, s, top);
-                push(pivotIndex + 1, right, s, top);
+                push(left, (pivotIndex - 1), s, top);
+                push((pivotIndex + 1), right, s, top);
             } else {
-                push(pivotIndex + 1, right, s, top);
-                push(left, pivotIndex - 1, s, top);
+                push((pivotIndex + 1), right, s, top);
+                push(left, (pivotIndex - 1), s, top);
             }
         }
     }
     delete [] s;
 }
 
-void quicksorti(int data[ ], size_t n) {
-    quickHelperI( data, 0, (int)(n - 1) );
+void quicksorti(int data[], size_t n) {
+    quickHelperI(data, 0, (int)(n - 1));
 }
 //*************************************************************************
 //*************************************************************************
