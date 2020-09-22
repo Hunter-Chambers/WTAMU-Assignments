@@ -168,7 +168,7 @@ class Statistician(object):
         else:
             # STUDENT complete this ensuring that result returned is float
             #         replace 0.0 with the appropriate expression
-            return 0.0
+            return (self.sumX() / self.length())
     # end mean
 
     def next_number(self, number:Number) -> None:
@@ -194,7 +194,20 @@ class Statistician(object):
         # STUDENT completes implementation here.
         #   NOTE: if number is the first number given to the statistician,
         #         then number is both the largest and smallest seen so far.
+        if (self.length() == 0):
+            self.__smallest = number
+            self.__largest = number
+        else:
+            if (self.__smallest > number):
+                self.__smallest = number
+            if (self.__largest < number):
+                self.__largest = number
+            # end ifs
+        # end if
 
+        self.__N += 1
+        self.__sumX += number
+        self.__sumXsq += (number ** 2)
     # end nextNumber
 
     def reset(self) -> None:
@@ -239,6 +252,14 @@ class Statistician(object):
         temp = Statistician(statistician)
 
         # STUDENT complete implementation here
+        temp.__sumX *= scale
+        temp.__sumXsq *= scale
+        temp.__smallest *= scale
+        temp.__largest *= scale
+
+        if (scale < 0):
+            temp.__smallest, temp.__largest = temp.__largest, temp.__smallest
+        # end if
 
         return temp
     # end scale
@@ -270,7 +291,7 @@ class Statistician(object):
         '''
         # STUDENT complete this by replacing the pass with appropriate
         #         return
-        pass
+        return sqrt( (self.__sumXsq / self.length()) - (self.mean() ** 2) )
     # end stdDev
 
     def __str__(self) -> str:
@@ -323,8 +344,7 @@ class Statistician(object):
            Both stat1 and stat2 must not be None and also must reference
            Statistician objects
 
-
-Arguments:
+        Arguments:
             stat1  reference to a Statistician
             stat2  reference to a Statistician
 
@@ -345,6 +365,30 @@ Arguments:
         temp = Statistician()
 
         # STUDENT completes implementation here
+        temp.__N = (stat1.length() + stat2.length())
+        temp.__sumX = (stat1.sumX() + stat2.sumX())
+        temp.__sumXsq = (stat1.__sumXsq + stat2.__sumXsq)
+
+        if (temp.length() == stat1.length()):
+            temp.__smallest = stat1.smallest()
+            temp.__largest = stat1.largest()
+        elif (temp.length() == stat2.length()):
+            temp.__smallest = stat2.smallest()
+            temp.__largest = stat2.largest()
+        else:
+            if (stat1.smallest() < stat2.smallest()):
+                temp.__smallest = stat1.smallest()
+            else:
+                temp.__smallest = stat2.smallest()
+            # end if
+
+            if (stat1.largest() > stat2.largest()):
+                temp.__largest = stat1.largest()
+            else:
+                temp.__largest = stat2.largest()
+            # end if
+        # end if
+
         return temp
 
 # end class Statistician
