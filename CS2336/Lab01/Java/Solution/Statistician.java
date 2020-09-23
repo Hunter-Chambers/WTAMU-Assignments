@@ -50,6 +50,7 @@ public class Statistician {
       this.largest  = -Double.MAX_VALUE;
    } 
 
+
    /**
    * Initialize a new Statistician as a copy of another Statistician.<br><br>
    * @param other
@@ -68,6 +69,10 @@ public class Statistician {
        this.N = other.N;
       // Student implementation -- initialize all remaining attributes
       // of "this" object with the values of the "other" object
+       this.sumX = other.sumX;
+       this.sumXsq = other.sumXsq;
+       this.smallest = other.smallest;
+       this.largest = other.largest;
    }  
 
 
@@ -102,7 +107,13 @@ public class Statistician {
       // it with appropriate logic that compares each and every attribute
       // of this with attributes of temp
       
-      return false;
+      if ( this.N != temp.N ) return false;
+      if ( this.sumX != temp.sumX ) return false;
+      if ( this.sumXsq != temp.sumXsq ) return false;
+      if ( this.smallest != temp.smallest ) return false;
+      if ( this.largest != temp.largest ) return false;
+
+      return true;
    } 
    
    /**
@@ -151,7 +162,8 @@ public class Statistician {
    public double largest( ) {
       // The student's code will replace the following return statement with
       // logic that matches specifications.
-      return 0;
+       if ( this.N <= 0 ) return Double.NaN;
+       return this.largest;
    }
 
    /**
@@ -175,7 +187,8 @@ public class Statistician {
    public double mean( ) {
       // The student's code will replace the following return statement with
       // code that matches specifications
-      return 0;
+       if ( this.N <= 0 ) return Double.NaN;
+       return (this.sumX / this.N);
    }
 
 
@@ -193,6 +206,15 @@ public class Statistician {
       // NOTE:  if number is the first number given to the statistician,
       //        then number is both the largest and smallest seen so far.
 
+       this.N++;
+       this.sumX += number;
+       this.sumXsq += (number * number);
+
+       if ( this.N <= 1 ) this.smallest = this.largest = number;
+       else {
+           if ( this.smallest > number ) this.smallest = number;
+           else if ( this.largest < number ) this.largest = number;
+       }
    }
    
    /**
@@ -205,6 +227,11 @@ public class Statistician {
    **/
    public void reset( ) {
       // Student implementation.
+       this.N        = 0;
+       this.sumX     = 0.0;
+       this.sumXsq   = 0.0;
+       this.smallest = +Double.MAX_VALUE;
+       this.largest  = -Double.MAX_VALUE;
    }
 
    /**
@@ -225,6 +252,17 @@ public class Statistician {
 
       // Student implementation follows
       
+       temp.sumX *= scale;
+       temp.sumXsq *= scale;
+       temp.smallest *= scale;
+       temp.largest *= scale;
+
+       if ( scale < 0 ) {
+           double small = temp.smallest;
+           temp.smallest = temp.largest;
+           temp.largest = small;
+       }
+
        return temp;
    }
 
@@ -241,7 +279,8 @@ public class Statistician {
    public double smallest( ) {
       // The student's code will replace the following return statement with
       // code that matches specifications
-      return 0;
+       if ( this.N <= 0 ) return Double.NaN;
+       return this.smallest;
    }
 
    /**
@@ -263,7 +302,7 @@ public class Statistician {
            return Double.NaN;
        //Student implementation replace the following return with
        //appropriate computations and return
-       return 0.0;
+       return sqrt( (this.sumXsq / this.N) - (this.mean() * this.mean()) );
    }
 
    /**
@@ -311,7 +350,7 @@ public class Statistician {
    public double sumX( ) {
       // The student's code will replace the following return with the 
       // appropriate return
-      return 0;
+       return this.sumX;
    }
 
    /**
@@ -333,8 +372,15 @@ public class Statistician {
       if ( s1 == null || s2 == null )
           throw new NullPointerException("One or both arguments are null");
 
-      Statistician temp = new Statistician();
       // Student's code to correctly set temp to be union
+
+      Statistician temp = new Statistician(s1);
+      temp.N += s2.N;
+      temp.sumX += s2.sumX;
+      temp.sumXsq += s2.sumXsq;
+
+      if ( temp.smallest > s2.smallest ) temp.smallest = s2.smallest;
+      if ( temp.largest < s2.largest ) temp.largest = s2.largest;
 
       return temp;
    }
