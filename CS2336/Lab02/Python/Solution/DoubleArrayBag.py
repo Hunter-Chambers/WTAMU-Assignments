@@ -79,6 +79,11 @@ class DoubleArrayBag(object):
         # newBags.__used
         # STUDENT CODE HERE TO ACCOMPLISH ABOVE
 
+        for i in range(self.__used):
+            newBag.__data[i] = self.__data[i]
+
+        newBag.__used = self.__used
+
         return newBag
     # end copy
 
@@ -131,17 +136,21 @@ class DoubleArrayBag(object):
             return False
         # end if
 
-        index = 0
-        isEqual = True  # assume equality
-        while isEqual and index < self.__used:
-            '''student should remove the next line'''
-            pass
-
         # Code that compares self.__data[index] with
         # other.__data[index] and sets isEqual to False
         # The logic must iterate over elements from 0
         # to < __used.
         # STUDENT CODE HERE TO ACCOMPLISH ABOVE
+
+        index = 0
+        isEqual = True  # assume equality
+        while isEqual and index < self.__used:
+            if (self.__data[index] != other.__data[index]):
+                isEqual = False
+            else:
+                index += 1
+            # end if
+        # end while
 
         return isEqual
     # end __eq__
@@ -218,12 +227,18 @@ class DoubleArrayBag(object):
             raise MemoryError("Not enough space to add elements of addend")
         # end if
 
-        selfIndex = self.size()
         addendIndex = 0
+
         # We now know that we have enough room to copy the items from
         # addend onto the end of the array of items self.__data.  We also
         # need to update self.__used appropriately
         # STUDENT CODE HERE TO ACCOMPLISH ABOVE GOES BELOW
+
+        while (addendIndex < addend.__used):
+            self.__data[self.__used] = addend.__data[addendIndex]
+            self.__used += 1
+            addendIndex += 1
+        # end while
 
         return self
     # end plusEqual
@@ -252,9 +267,14 @@ class DoubleArrayBag(object):
         # Below statement is the "magic" and lazy way to count occurrences
         # return self.__data.count(target)
         # STUDENT CODE HERE TO ACCOMPLISH ABOVE GOES BELOW
-        count = 0
 
-        #
+        count = 0
+        for i in range(self.__used):
+            if (self.__data[i] == target):
+                count += 1
+            # end if
+        # end for
+
         return count
     # end occurrences
 
@@ -304,6 +324,9 @@ class DoubleArrayBag(object):
             # onto data[index] since ordering doesn't matter
             # STUDENT CODE HERE TO ACCOMPLISH ABOVE GOES BELOW
 
+            self.__used -= 1
+            self.__data[index] = self.__data[self.__used]
+
             return True
         # end if
     # end erase_one
@@ -331,6 +354,7 @@ class DoubleArrayBag(object):
         # end if
 
         number_removed = 0
+
         # Terribly inefficient method -- has performance O(N^2).  The only
         # redeeming quality of below is that it works
         # while self.erase_one(target):
@@ -343,6 +367,17 @@ class DoubleArrayBag(object):
         # on down the array to see if any more items match target and repeat
         # process until we have exhaustively searched the entire array
         # STUDENT CODE HERE TO ACCOMPLISH ABOVE GOES BELOW
+
+        i = 0
+        while (i < self.__used):
+            if (self.__data[i] == target):
+                self.__used -= 1
+                self.__data[i] = self.__data[self.__used]
+                number_removed += 1
+            else:
+                i += 1
+            # end if
+        # end while
 
         return number_removed
     # end erase
@@ -388,6 +423,9 @@ class DoubleArrayBag(object):
         # to do so.  Logic is somewhat similar to logic of plusEquals.
         # STUDENT CODE HERE TO ACCOMPLISH ABOVE GOES BELOW
         newBag = DoubleArrayBag()
+
+        newBag.plusEqual(b1)
+        newBag.plusEqual(b2)
 
         return newBag
     # end union
