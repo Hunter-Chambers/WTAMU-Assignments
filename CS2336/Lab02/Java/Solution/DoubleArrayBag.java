@@ -67,6 +67,10 @@ public class DoubleArrayBag implements Cloneable  {
        //into this.data
        // STUDENT IMPLEMENTATION OF ABOVE GOES BELOW -- consider use of System.arraycopy shown
        // in text
+
+       data = new double[MAX_CAPACITY];
+       System.arraycopy(source.data, 0, data, 0, source.used);
+       used = source.used;
    }
 
      
@@ -144,6 +148,10 @@ public class DoubleArrayBag implements Cloneable  {
            // set isEqual to false -- which terminates the loop
            // STUDENT IMPLEMENTATION OF ABOVE GOES HERE
            
+           while (isEqual && index < used) {
+               if (data[index] != candidate.data[index]) isEqual = false;
+               else index++;
+           }
        }
        return isEqual;
    }
@@ -183,6 +191,14 @@ public class DoubleArrayBag implements Cloneable  {
        // searching for a match with target and "erasing" it as is done in erase_one.
        // Of course increment the count each time an item is "erased"
        // STUDENT IMPLEMENTATION OF ABOVE HERE
+
+       int i = 0;
+       while (i < used) {
+           if (data[i] == target) {
+               data[i] = data[--used];
+               count++;
+           } else i++;
+       }
 
        return count;
    }
@@ -263,7 +279,9 @@ public class DoubleArrayBag implements Cloneable  {
       // of the array data.  Investigate use of the highly efficient System.arraycopy
       // method.
       // STUDENT IMPLEMENTATION OF ABOVE HERE
-      //
+
+       System.arraycopy(addend.data, 0, data, used, addend.used);
+       used += addend.used;
    }   
 
    /**
@@ -291,6 +309,8 @@ public class DoubleArrayBag implements Cloneable  {
       // items.
       // STUDENT IMPLEMENTATION OF ABOVE HERE
 
+      for (int i = 0; i < used; i++)
+          if (data[i] == target) answer++;
 
       return answer;
    }
@@ -360,6 +380,9 @@ public class DoubleArrayBag implements Cloneable  {
       //into answer's data.  Of course answer's used must be updated.
       //Investigate use of the highly efficient System.arraycopy method
       // STUDENT IMPLEMENTATION OF ABOVE HERE
+
+      answer.plusEquals(b1);
+      answer.plusEquals(b2);
 
       return answer;
    }
