@@ -82,7 +82,10 @@ class DoubleArrayBag(object):
         copyCapacity = self.__used
         if (copyCapacity < 1):
             copyCapacity = 1
+        # end if
+
         newBag = DoubleArrayBag(copyCapacity)
+
         # STUDENT IMPLEMENTATION GOES HERE
         #   must copy all elements from self.__data into
         #   the newBag and update any attributes to
@@ -91,6 +94,7 @@ class DoubleArrayBag(object):
         for i in range(self.__used):
             newBag.__data[i] = self.__data[i]
         # end for
+
         newBag.__used = self.__used
 
         return newBag
@@ -269,7 +273,7 @@ class DoubleArrayBag(object):
         self.__used += 1
     # end add
 
-    def __iadd__(self, addend: DoubleArrayBag) -> None:
+    def __iadd__(self, addend: DoubleArrayBag) -> DoubleArrayBag:
         '''
         an implementation of the += operation
 
@@ -453,15 +457,7 @@ class DoubleArrayBag(object):
         #   watch out when both bags are empty -- be sure to test this
 
         new_bag = b1.copy()
-
-        if (b2.__used > 0):
-            new_bag.ensureCapacity(new_bag.__used + b2.__used)
-
-            for i in range(b2.__used):
-                new_bag.__data[new_bag.__used] = b2.__data[i]
-                new_bag.__used += 1
-            # end for
-        # end if
+        new_bag += b2
 
         return new_bag
     # end union
