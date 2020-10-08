@@ -468,12 +468,7 @@ public class DoubleArrayBag implements Cloneable  {
       
       DoubleArrayBag newBag = b1.clone();
 
-      if (b2.used > 0) {
-          newBag.ensureCapacity(newBag.used + b2.used);
-
-          for (int i = 0; i < b2.used; i++)
-              newBag.data[newBag.used++] = b2.data[i];
-      }
+      newBag.plusEquals(b2);
 
       return newBag;
    }
