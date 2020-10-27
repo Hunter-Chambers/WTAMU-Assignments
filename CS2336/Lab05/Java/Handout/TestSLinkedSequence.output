@@ -1,0 +1,72 @@
+Sequence after default constructor
+IntListSequence: 0 items==>[  ]
+isCurrent() is false
+size() is 0
+call to getCurrent() results in cannot getCurrent when no current node
+advance() resulted in cannot advance the cursor
+
+new sequence after multiple addAfter
+IntListSequence: 9 items==>[ -8, -6, -4, -2, 0, 2, 4, +6, ^8 ]
+
+sequence after start and three advances adding after -1
+IntListSequence: 10 items==>[ -8, -6, -4, +-2, ^-1, 0, 2, 4, 6, 8 ]
+
+sequence after advance and adding after 1
+IntListSequence: 11 items==>[ -8, -6, -4, -2, -1, +0, ^1, 2, 4, 6, 8 ]
+
+sequence after two advances and adding before 3
+IntListSequence: 12 items==>[ -8, -6, -4, -2, -1, 0, 1, +2, ^3, 4, 6, 8 ]
+And the list size is now 12
+
+new sequence after multiple addBefore
+IntListSequence: 9 items==>[ ^8, 6, 4, 2, 0, -2, -4, -6, -8 ]
+
+Sequence after advancing cursor past end of list
+IntListSequence: 9 items==>[ 8, 6, 4, 2, 0, -2, -4, -6, -8 ]
+We correctly caught exception from advance:  cannot advance the cursor
+
+the original list is:
+IntListSequence: 9 items==>[ ^8, 6, 4, 2, 0, -2, -4, -6, -8 ]
+the new list created with copy constructor:
+IntListSequence: 9 items==>[ ^8, 6, 4, 2, 0, -2, -4, -6, -8 ]
+
+Testing whether list and list2 are equal -- we should get true and we got true
+
+the list is:
+IntListSequence: 9 items==>[ ^8, 6, 4, 2, 0, -2, -4, -6, -8 ]
+the list after removeCurrent is:
+IntListSequence: 8 items==>[ ^6, 4, 2, 0, -2, -4, -6, -8 ]
+
+the list after an advance and removeCurrent is:
+IntListSequence: 7 items==>[ +6, ^2, 0, -2, -4, -6, -8 ]
+
+the list after four more advances and removeCurrent is:
+IntListSequence: 6 items==>[ 6, 2, 0, -2, +-4, ^-8 ]
+
+the list after removeCurrent is:
+IntListSequence: 5 items==>[ 6, 2, 0, -2, -4 ]
+
+Attempting to removeCurrent when there is no current
+Correctly caught IllegalStateException -- cannot remove current node when there is no current node
+
+list before copy constructor
+IntListSequence: 5 items==>[ 6, 2, 0, -2, -4 ]
+list2 before copy constructor
+IntListSequence: 9 items==>[ ^8, 6, 4, 2, 0, -2, -4, -6, -8 ]
+
+list after copy constructor
+IntListSequence: 9 items==>[ ^8, 6, 4, 2, 0, -2, -4, -6, -8 ]
+list2 after copy constructor
+IntListSequence: 9 items==>[ ^8, 6, 4, 2, 0, -2, -4, -6, -8 ]
+
+The two lists should now be equal
+	Comparing list.equals(list2) -- should be true and it is true
+Advancing one position in list
+The two lists should now NOT be equal
+	Comparing list.equals(list2) -- should be false and it is
+List is IntListSequence: 9 items==>[ +8, ^6, 4, 2, 0, -2, -4, -6, -8 ]
+List2 is IntListSequence: 9 items==>[ ^8, 6, 4, 2, 0, -2, -4, -6, -8 ]
+
+Attempting to invoke copy constructor on null list
+Caught NullPointerException as we should have ==> Cannot copy a non-list
+
