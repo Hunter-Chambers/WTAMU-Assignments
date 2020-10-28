@@ -11,7 +11,7 @@ import java.util.Objects;
  * a sequence implemented using a singly-linked list
  *
  * @author H. Paul Haiduk based on code by Michael Main
- * @author ????
+ * @author Hunter Chambers
  * @version October, 2020
  */
 
@@ -59,7 +59,6 @@ public class SLinkedSequence<Item> extends Object implements Cloneable, Iterable
      *  1) The underlying list and all attributes are "deep" copied
      *  2) The data in each node is "deep" copied if the data object supports
      *     clone(); otherwise, the data is "shallow" copied
-
      **/
     @SuppressWarnings("unchecked")
     public SLinkedSequence( SLinkedSequence<Item> sequenceToCopy ) {
@@ -77,6 +76,25 @@ public class SLinkedSequence<Item> extends Object implements Cloneable, Iterable
             //copy from head through precursor
             // STUDENT COMPLETE HERE
 
+            SLNode<Item> otherCursor = sequenceToCopy.head.getLink();
+            head = precursor = new SLNode<Item>(sequenceToCopy.head.getData());
+
+            while (otherCursor != sequenceToCopy.cursor) {
+                precursor.setLink(new SLNode<Item>(otherCursor.getData()));
+                precursor = precursor.getLink();
+                otherCursor = otherCursor.getLink();
+            }
+
+            cursor = precursor;
+
+            while (otherCursor != null) {
+                cursor.setLink(new SLNode<Item>(otherCursor.getData()));
+                cursor = cursor.getLink();
+                otherCursor = otherCursor.getLink();
+            }
+
+            tail = cursor;
+            cursor = precursor.getLink();
         } else { //no cursor or cursor is at head
             // first two bullets top page 235
             this.used = sequenceToCopy.used;
@@ -158,6 +176,16 @@ public class SLinkedSequence<Item> extends Object implements Cloneable, Iterable
         //must traverse both lists to check for a mis-match in data
         //while so doing, check for cursor mismatch
         // STUDENT COMPLETE HERE
+
+        while (thisList != null && isEqual) {
+            if (thisList.getData() != otherList.getData()) isEqual = false;
+            else if (thisList == this.cursor && otherList != candidate.cursor) isEqual = false;
+            else if (thisList != this.cursor && otherList == candidate.cursor) isEqual = false;
+            else {
+                thisList = thisList.getLink();
+                otherList = otherList.getLink();
+            }
+        }
 
         return isEqual;
     }
@@ -305,13 +333,24 @@ public class SLinkedSequence<Item> extends Object implements Cloneable, Iterable
         if ( this.used == 0 ) { //handle #1 above
             /* adding new node to empty list */
             // STUDENT COMPLETE HERE
+
+            head = tail = cursor = new SLNode<Item>(newValue);
         }
-        else if ( !this.isCurrent() ) { //handle #3 above
+        else if ( !this.isCurrent() || cursor == tail ) { //handle #3 above
             /* adding new node at end of list */
             // STUDENT COMPLETE HERE
+
+            cursor = new SLNode<Item>(newValue);
+            tail.setLink(cursor);
+            precursor = tail;
+            tail = cursor;
         } else { //handle #2 above
             /* adding new node after cursor */
             // STUDENT COMPLETE HERE
+
+            precursor = cursor;
+            cursor = new SLNode<Item>(newValue, precursor.getLink());
+            precursor.setLink(cursor);
         }
         this.used++;
     }
@@ -332,15 +371,21 @@ public class SLinkedSequence<Item> extends Object implements Cloneable, Iterable
             /* adding new node to empty list */
             // STUDENT COMPLETE HERE
 
+            head = tail = cursor = new SLNode<Item>(newValue);
         }
         else if ( this.isCurrent() && ( this.cursor != this.head ) ) { //handle #2 above
             /* adding before a node that is not the head node */
             // STUDENT COMPLETE HERE
 
+            cursor = new SLNode<Item>(newValue, cursor);
+            precursor.setLink(cursor);
         }
         else {
             /* logically -- we are adding before head node irrespective of isCurrent() */
             // STUDENT COMPLETE HERE
+
+            cursor = new SLNode<Item>(newValue, head);
+            head = cursor;
         }
         this.used++;
     }
@@ -368,22 +413,26 @@ public class SLinkedSequence<Item> extends Object implements Cloneable, Iterable
         /* are we removing the head node */
         if ( trash == this.head ) {
             // STUDENT COMPLETE HERE
-            //
             
+            cursor = head = head.getLink();
         /* are we removing the tail node */
         } else if ( trash == this.tail ) {
             // STUDENT COMPLETE HERE
-            //
-              
+
+            tail = precursor;
+            tail.setLink(null);
+            cursor = precursor = null;
         /* logically follows that we are removing an internal node */
         } else {
             // STUDENT COMPLETE HERE
-            //
 
+            cursor = cursor.getLink();
+            precursor.setLink(cursor);
         }
         // STUDENT COMPLETE HERE
         /* this to raise conscienceness about memory management */
         trash.setLink(null); trash = null;
+        used--;
     }
 
     /**
@@ -415,11 +464,26 @@ public class SLinkedSequence<Item> extends Object implements Cloneable, Iterable
         // next check if this is empty; if so return a copy of other
         // making certain the copy is NOT current
 
-
         // let newSequence be a copy of this and then add to it elements of other
+
+        newSequence = new SLinkedSequence<Item>(this);
+
+        newSequence.cursor = newSequence.tail;
+        SLNode<Item> otherCursor = other.head;
+
+        while (otherCursor != null) {
+            newSequence.precursor = newSequence.cursor;
+            newSequence.cursor = new SLNode<Item>(otherCursor.getData());
+            newSequence.precursor.setLink(newSequence.cursor);
+            otherCursor = otherCursor.getLink();
+        }
 
         // be sure all attributes are properly updated including
         // making sequence NOT current
+
+        newSequence.used += other.used;
+        newSequence.tail = newSequence.cursor;
+        newSequence.cursor = null;
 
         return newSequence;
     }
