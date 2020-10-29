@@ -383,7 +383,7 @@ public class SLinkedSequence<Item> extends Object implements Cloneable, Iterable
         }
         // STUDENT COMPLETE HERE
         /* this to raise conscienceness about memory management */
-        trash.setLink(null); trash = null;
+        trash.setLink(null); trash.setData(null); trash = null;
     }
 
     /**
