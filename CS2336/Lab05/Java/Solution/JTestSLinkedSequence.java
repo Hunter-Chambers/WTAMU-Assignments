@@ -220,5 +220,18 @@ public class JTestSLinkedSequence {
         System.out.printf("passed . . .\n");
     }
 
+    @Test
+    public void test_07_copyConstructor() {
+        SLinkedSequence<Integer> test1 = new SLinkedSequence<Integer>();
+        SLinkedSequence<Integer> test2 = new SLinkedSequence<Integer>(test1);
+
+        assertNotSame("Should not be same", test1, test2);
+        assertTrue("Should be true", test2.equals(test1));
+
+        test2.addAfter(1);
+
+        assertFalse("Should be false", test2.equals(test1));
+    }
+
 }
 
