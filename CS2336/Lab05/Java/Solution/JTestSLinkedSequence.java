@@ -220,5 +220,65 @@ public class JTestSLinkedSequence {
         System.out.printf("passed . . .\n");
     }
 
+    @Test
+    public void test_07_copyConstructor() {
+        System.out.printf("\ntesting the copy constructor\n");
+
+        SLinkedSequence<Integer> test1 = new SLinkedSequence<Integer>();
+        SLinkedSequence<Integer> test2 = new SLinkedSequence<Integer>(test1);
+        assertEquals("Sequences should be equal", test1, test2);
+        assertNotSame("Sequences should be separate objects", test1, test2);
+
+        System.out.printf("passed . . .\n");
+    }
+
+    @Test
+    public void test_08_equals() {
+        System.out.printf("\ntesting the equals method\n");
+
+        System.out.printf("passed . . .\n");
+    }
+
+    @Test
+    public void test_09_addAfter() {
+        System.out.printf("\ntesting addAfter\n");
+
+        SLinkedSequence<Integer> test1 = new SLinkedSequence<Integer>();
+        Integer[] items = new Integer[TEST_SIZE];
+        for (int i = 0; i < TEST_SIZE; ++i) {
+            items[i] = i;
+            test1.addAfter(i);
+        }
+        //System.out.printf("test1 looks like: %s\n", test1);
+
+        assertTrue(check_match(test1, items));
+        assertTrue(test1.isCurrent());
+        test1.advance();
+        assertFalse(test1.isCurrent());
+
+        System.out.printf("passed . . .\n");
+    }
+
+    @Test
+    public void test_10_addBefore() {
+        System.out.printf("\ntesting addBefore\n");
+
+        System.out.printf("passed . . .\n");
+    }
+
+    @Test
+    public void test_11_removeCurrent() {
+        System.out.printf("\ntesting removeCurrent\n");
+
+        System.out.printf("passed . . .\n");
+    }
+
+    @Test
+    public void test_12_concatenation() {
+        System.out.printf("\ntesting the concatenation method\n");
+
+        System.out.printf("passed . . .\n");
+    }
+
 }
 
