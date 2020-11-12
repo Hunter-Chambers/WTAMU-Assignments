@@ -5,10 +5,10 @@ from stack import Stack,stack
 
 def tower_range(aStack : Stack) -> int :
     '''this function is given a stack as an argument with
-    the assumptions:
+       the assumptions:
         (1) the stack contains the height of at least one tower
         (2) any subsequent heights on the stack represent heights
-            of towers to the left of top height
+            of towers to the left of the tower height at top of stack
         (3) the function returns the range of the tower that was
             on top of the stack at entry to this function
         (4) minimum range is 1 as defined in problem statement
@@ -26,7 +26,7 @@ def main():
 
     Data structures needed are:
 
-        H -- a list of N elements
+        height -- a list of N elements
         heightStack -- a stack with capacity of N
     '''
     heightStack = stack(100)
@@ -38,6 +38,4 @@ def main():
 if __name__ == "__main__":
     main()
 # end if
-
-
 
