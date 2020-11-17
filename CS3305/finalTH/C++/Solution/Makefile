@@ -14,7 +14,6 @@ run_check : sorttests .valgrindrc
 	#valgrind --main-stacksize=4294967295 ./sorttests
 
 my_run	: sorttests
-	make; \
 	./sorttests > output.txt
 
 clean :

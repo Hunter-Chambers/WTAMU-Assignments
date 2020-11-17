@@ -54,23 +54,25 @@ int main( ) {
     ARRAY_SIZE = 256;
     MAX_DIGITS = 3;
 
+    /*
     struct rlimit rl;
     int result;
     const rlim_t StackSize = 2u * 1024 * 1024 * 1024 - 1; // min stack size = 2 GB - 1
 
-    bool done = false;
-    while(!done) {
-        result = getrlimit(RLIMIT_STACK, &rl);
-        if (result == 0) {
-            if (rl.rlim_cur < StackSize) {
-                rl.rlim_cur = StackSize;
-                result = setrlimit(RLIMIT_STACK, &rl);
-                if (result != 0) {
-                    fprintf(stderr, "setrlimit returned result = %d\n", result);
-                }
+    result = getrlimit(RLIMIT_STACK, &rl);
+    if (result == 0) {
+        if (rl.rlim_cur < StackSize) {
+            rl.rlim_cur = StackSize;
+            result = setrlimit(RLIMIT_STACK, &rl);
+            if (result != 0) {
+                fprintf(stderr, "setrlimit returned result = %d\n", result);
             }
         }
+    }
+    */
     
+    bool done = false;
+    while(!done) {
         srand(time(NULL));  //seed random number generator
 
         cout << "--------------------\n";
