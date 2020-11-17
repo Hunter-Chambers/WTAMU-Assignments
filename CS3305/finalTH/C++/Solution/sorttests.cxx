@@ -138,6 +138,7 @@ int main( ) {
 
         // comment out this if-statmet to test on the array
         // size of 131072. Also uncomment lines 58-71
+        // ONLY WORKS ON THOR
         if (ARRAY_SIZE == 65536 && LIMIT == 0xF423F && MAX_DIGITS == 6)
             done = true;
 
@@ -166,8 +167,25 @@ int main( ) {
 
 
 long double testsort(void sorter(int data[], size_t n), const char* name) {
-    int data[ARRAY_SIZE];              // Array of integers to be sorted
-    size_t count[LIMIT+1] = {0};       // Count of how many times each
+    int* data;
+    if (ARRAY_SIZE == 256) data = new int[256];
+    else if (ARRAY_SIZE == 1024) data = new int[1024];
+    else if (ARRAY_SIZE == 2048) data = new int[2048];
+    else if (ARRAY_SIZE == 4096) data = new int[4096];
+    else if (ARRAY_SIZE == 8192) data = new int[8192];
+    else if (ARRAY_SIZE == 16384) data = new int[16384];
+    else if (ARRAY_SIZE == 32768) data = new int[32768];
+    else if (ARRAY_SIZE == 65536) data = new int[65536];
+    else data = new int[131072];
+
+    size_t* count;
+    if (LIMIT == 0x3E7) count = new size_t[0x3E7+1];
+    else if (LIMIT == 0x270F) count = new size_t[0x270F+1];
+    else if (LIMIT == 0x1869F) count = new size_t[0x1869F+1];
+    else count = new size_t[0xF423F+1];
+
+    //int data[ARRAY_SIZE];              // Array of integers to be sorted
+    //size_t count[LIMIT+1] = {0};       // Count of how many times each
                                        // number appears in data array
     size_t i;                          // Index for the data array.
 
