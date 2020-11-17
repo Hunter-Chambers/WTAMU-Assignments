@@ -41,17 +41,23 @@ def main():
     height = [None] * N
     heightStack = stack(N)
 
+    t_ranges = [None] * N
+
     for i in range(N):
         height[i] = int(input())
     # end for
 
     for i in range(N):
-        for j in range(0, i + 1):
+        for j in range(i + 1):
             heightStack.push(height[j])
         # end for
-        print(tower_range(heightStack), end=' ')
         #print(heightStack, "\n")
+        t_ranges[i] = tower_range(heightStack)
         heightStack.reset()
+    # end for
+
+    for t_range in t_ranges:
+        print(t_range, end=' ')
     # end for
 
     print()

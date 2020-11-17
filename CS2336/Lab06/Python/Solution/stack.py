@@ -132,6 +132,7 @@ class stack:
         # end if
 
         temp = self.__data[self.__top]
+        self.__data[self.__top] = None
         self.__top += 1
         return temp
     # end pop
