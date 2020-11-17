@@ -12,8 +12,7 @@
 #include <chrono>      // for timing
 #include <queue>       // Provides queue
 #include <time.h>      // Provides time
-#include "C:\MinGW\msys\1.0\include\sys\resource.h" //For increasing stack size to hold large arrays
-//#include <sys/resource.h> //For increasing stack size to hold large arrays
+#include <sys/resource.h> //For increasing stack size to hold large arrays
 
 using namespace std;
 
