@@ -133,13 +133,11 @@ int main( ) {
         //cout << "\nPress Enter to continue..." << "\n";
         //cin.ignore();
 
-        /*
         if (ARRAY_SIZE == 131072 && LIMIT == 0xF423F && MAX_DIGITS == 6)
             done = true;
-        */
 
-        // comment out this if and uncomment the one above to work with
-        // large array sizes
+        // comment out this if-statmet to test on the array
+        // size of 131072. Also uncomment lines 58-71
         if (ARRAY_SIZE == 65536 && LIMIT == 0xF423F && MAX_DIGITS == 6)
             done = true;
 
