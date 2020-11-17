@@ -179,10 +179,10 @@ long double testsort(void sorter(int data[], size_t n), const char* name) {
     else data = new int[131072];
 
     size_t* count;
-    if (LIMIT == 0x3E7) count = new size_t[0x3E7+1];
-    else if (LIMIT == 0x270F) count = new size_t[0x270F+1];
-    else if (LIMIT == 0x1869F) count = new size_t[0x1869F+1];
-    else count = new size_t[0xF423F+1];
+    if (LIMIT == 0x3E7) count = (new size_t[0x3E7+1]());
+    else if (LIMIT == 0x270F) count = (new size_t[0x270F+1]());
+    else if (LIMIT == 0x1869F) count = (new size_t[0x1869F+1]());
+    else count = (new size_t[0xF423F+1]());
 
     //int data[ARRAY_SIZE];              // Array of integers to be sorted
     //size_t count[LIMIT+1] = {0};       // Count of how many times each
@@ -214,6 +214,7 @@ long double testsort(void sorter(int data[], size_t n), const char* name) {
     for (i = 1; i < ARRAY_SIZE; ++i) {
 	if (data[i-1] > data[i]) {
 	    cout << "Incorrect sort at index " << i << "\n\n";
+            delete [] data; delete [] count;
 	    return 0;
 	}
 	--count[data[i]];
@@ -222,12 +223,14 @@ long double testsort(void sorter(int data[], size_t n), const char* name) {
     for (i = 0; i < (size_t) LIMIT+1; ++i) {
 	if (count[i] != 0) {
 	    cout << "Incorrect numbers in the data array after sorting." << "\n\n";
+            delete [] data; delete [] count;
 	    return 0;
 	}
     }
 
     //cout << "Sorting completed correctly." << "\n\n";
 
+    delete [] data; delete [] count;
     return helper_var;
 }
 
