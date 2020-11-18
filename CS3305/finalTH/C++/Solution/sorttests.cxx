@@ -55,6 +55,7 @@ int main( ) {
     MAX_DIGITS = 3;
 
     /*
+    // uncomment these lines to run this code on a linux environment
     struct rlimit rl;
     int result;
     const rlim_t StackSize = 2u * 1024 * 1024 * 1024 - 1; // min stack size = 2 GB - 1
@@ -136,14 +137,9 @@ int main( ) {
         if (ARRAY_SIZE == 131072 && LIMIT == 0xF423F && MAX_DIGITS == 6)
             done = true;
 
-        // comment out this if-statmet to test on the array
-        // size of 131072. Also uncomment lines 58-71
-        // ONLY WORKS ON THOR
-        if (ARRAY_SIZE == 65536 && LIMIT == 0xF423F && MAX_DIGITS == 6)
-            done = true;
-
         /*
         // uncomment this if-statement in order to use valgrind
+        // ONLY WORKS ON THOR
         if (ARRAY_SIZE == 256 && LIMIT == 0x3E7 && MAX_DIGITS == 3)
             done = true;
         */
