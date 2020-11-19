@@ -188,14 +188,16 @@ class stack:
         #        cells of the stack beyond top
         string = ("Capacity: " + str(self.__capacity))
         string += ("\nSize: " + str(self.size()))
-        string += "\nTop ==> "
+        if (not self.is_empty()):
+            string += "\nTop ==> "
 
-        i = self.__top
-        while (i < self.__capacity - 1):
-            string += (str(self.__data[i]) + "\n        ")
-            i += 1
-        # end while
-        string += str(self.__data[i])
+            i = self.__top
+            while (i < self.__capacity - 1):
+                string += (str(self.__data[i]) + "\n        ")
+                i += 1
+            # end while
+            string += str(self.__data[i])
+        # end if
 
         return string
     # end __str__
