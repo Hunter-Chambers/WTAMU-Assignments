@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+    <color name="Turquoise">#19C4B0</color>
+    <color name="Fuschia">#FF0061</color>
+    <color name="Maroon">#800000</color>
+    <color name="White">#FFFFFF</color>
+    <color name="Violet">#6C30F6</color>
+</resources>

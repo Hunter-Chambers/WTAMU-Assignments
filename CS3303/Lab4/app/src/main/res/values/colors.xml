@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+    <color name="lightBlue">#2AB2C9</color>
+    <color name="darkGreen">#00750A</color>
+    <color name="maroon">#800000</color>
+    <color name="orange">#FF9F19</color>
+    <color name="indigo">#471880</color>
+    <color name="neonGreen">#47FF0F</color>
+    <color name="lightRed">#FF2B2B</color>
+    <color name="pink">#FF1F93</color>
+</resources>

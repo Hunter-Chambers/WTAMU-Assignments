@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    >
+
+    <!-- Row 1 -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/itemName"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintVertical_bias=".04"
+        android:layout_marginStart="25dp"
+        android:text="Item Name"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:textColor="@color/Violet"
+        />
+    <EditText
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/itemInput"
+        app:layout_constraintTop_toTopOf="@+id/itemName"
+        app:layout_constraintBottom_toBottomOf="@+id/itemName"
+        app:layout_constraintLeft_toRightOf="@+id/itemName"
+        android:layout_marginStart="40dp"
+        android:textSize="20dp"
+        android:inputType="textCapWords"
+        android:hint="Enter name"
+        />
+
+    <!-- Row 2 -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/itemPrice"
+        app:layout_constraintTop_toBottomOf="@+id/itemName"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="@+id/itemName"
+        app:layout_constraintVertical_bias=".04"
+        android:text="Item Price"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:textColor="@color/Violet"
+        />
+    <EditText
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/priceInput"
+        app:layout_constraintTop_toTopOf="@+id/itemPrice"
+        app:layout_constraintBottom_toBottomOf="@+id/itemPrice"
+        app:layout_constraintLeft_toLeftOf="@+id/itemInput"
+        android:textSize="20dp"
+        android:inputType="numberDecimal"
+        android:hint="0.00"
+        />
+
+    <!-- Row 3 -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/itemQuantity"
+        app:layout_constraintTop_toBottomOf="@+id/itemPrice"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="@+id/itemPrice"
+        app:layout_constraintVertical_bias=".04"
+        android:text="Item Quantity"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:textColor="@color/Violet"
+        />
+    <EditText
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/quantityInput"
+        app:layout_constraintTop_toTopOf="@+id/itemQuantity"
+        app:layout_constraintBottom_toBottomOf="@+id/itemQuantity"
+        app:layout_constraintLeft_toLeftOf="@+id/itemInput"
+        android:textSize="20dp"
+        android:inputType="numberDecimal"
+        android:hint="0"
+        />
+
+    <!-- Row 4 -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/salesTax"
+        app:layout_constraintTop_toBottomOf="@+id/itemQuantity"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="@+id/itemQuantity"
+        app:layout_constraintVertical_bias=".04"
+        android:text="Sales Tax %"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:textColor="@color/Violet"
+        />
+    <EditText
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/taxInput"
+        app:layout_constraintTop_toTopOf="@+id/salesTax"
+        app:layout_constraintBottom_toBottomOf="@+id/salesTax"
+        app:layout_constraintLeft_toLeftOf="@+id/itemInput"
+        android:textSize="20dp"
+        android:inputType="numberDecimal"
+        android:hint="0.00"
+        />
+
+    <!-- Row 5 -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/total"
+        app:layout_constraintTop_toBottomOf="@+id/salesTax"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="@+id/salesTax"
+        app:layout_constraintVertical_bias=".09"
+        android:text="Total"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:textColor="@color/Violet"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/totalOutput"
+        app:layout_constraintTop_toTopOf="@+id/total"
+        app:layout_constraintBottom_toBottomOf="@id/total"
+        app:layout_constraintLeft_toLeftOf="@+id/taxInput"
+        android:text="$0.00"
+        android:textSize="20dp"
+        />
+
+    <!-- Row 6 -->
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/showList"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/total"
+        app:layout_constraintLeft_toLeftOf="@+id/total"
+        app:layout_constraintVertical_bias=".09"
+        android:layout_marginStart="65dp"
+        android:text="Show List"
+        android:onClick="showActivity"
+        android:background="@color/Fuschia"
+        />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/addItem"
+        app:layout_constraintBottom_toBottomOf="@id/showList"
+        app:layout_constraintTop_toTopOf="@id/showList"
+        app:layout_constraintLeft_toRightOf="@id/showList"
+        android:layout_marginStart="50dp"
+        android:text="Add Item"
+        android:onClick="itemActivity"
+        android:background="@color/Turquoise"
+        />
+
+    <!-- Row 7 -->
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/compute"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="@id/showList"
+        app:layout_constraintTop_toBottomOf="@+id/showList"
+        android:layout_marginStart="68dp"
+        app:layout_constraintVertical_bias=".13"
+        android:text="Compute"
+        android:onClick="calculate"
+        android:background="@color/Maroon"
+        android:textColor="@color/White"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

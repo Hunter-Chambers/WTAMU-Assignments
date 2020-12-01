@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    >
+
+    <!-- Row 1 -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/input_msg"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias=".1"
+        app:layout_constraintHorizontal_bias=".15"
+        android:text="@string/input_msg"
+        android:textSize="20sp"
+        />
+    <EditText
+        android:layout_width="120sp"
+        android:layout_height="wrap_content"
+        android:id="@+id/temp_input"
+        app:layout_constraintTop_toTopOf="@id/input_msg"
+        app:layout_constraintBottom_toBottomOf="@id/input_msg"
+        app:layout_constraintLeft_toRightOf="@id/input_msg"
+        android:layout_marginStart="25sp"
+        android:inputType="numberDecimal"
+        android:hint="@string/hint"
+        android:textSize="20sp"
+        />
+
+    <!-- Row 2 -->
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/compute_button"
+        app:layout_constraintTop_toBottomOf="@+id/input_msg"
+        app:layout_constraintLeft_toLeftOf="@id/input_msg"
+        android:layout_marginTop="25sp"
+        android:text="@string/button_text"
+        android:textSize="20sp"
+        android:onClick="compute"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/temp_output"
+        app:layout_constraintTop_toTopOf="@id/compute_button"
+        app:layout_constraintBottom_toBottomOf="@id/compute_button"
+        app:layout_constraintLeft_toLeftOf="@id/temp_input"
+        android:textSize="20sp"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

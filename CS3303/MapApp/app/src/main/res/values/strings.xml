@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">My Map</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="map_button">Map</string>
+    <string name="satellite_button">Satellite</string>
+    <string name="hybrid_button">Hybrid</string>
+</resources>

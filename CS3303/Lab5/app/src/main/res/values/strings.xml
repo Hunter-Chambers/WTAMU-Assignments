@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">DJIA Calculator</string>
+    <string name="compute_button">Compute</string>
+    <string name="row_3">Dow Jones Industrial Average</string>
+</resources>

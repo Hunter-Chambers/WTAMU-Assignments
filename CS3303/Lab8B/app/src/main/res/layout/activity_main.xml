@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    >
+
+    <!-- Row 1 -->
+    <TextView
+        android:id="@+id/fname_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintVertical_bias=".1"
+        android:layout_marginStart="25dp"
+        android:text="First Name:"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        />
+    <EditText
+        android:id="@+id/fname_et"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBaseline_toBaselineOf="@+id/fname_tv"
+        app:layout_constraintStart_toEndOf="@+id/fname_tv"
+        android:layout_margin="15dp"
+        android:textSize="20sp"
+        />
+
+    <!-- Row 2 -->
+    <TextView
+        android:id="@+id/lname_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@+id/fname_tv"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias=".17"
+        android:text="Last Name:"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        />
+    <EditText
+        android:id="@+id/lname_et"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBaseline_toBaselineOf="@+id/lname_tv"
+        app:layout_constraintStart_toStartOf="@+id/fname_et"
+        android:textSize="20sp"
+        />
+
+    <!-- Row 3 -->
+    <Button
+        android:id="@+id/find"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="@+id/lname_tv"
+        app:layout_constraintVertical_bias=".25"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text="Find"
+        android:onClick="find"
+        android:background="@color/cyan"
+        />
+    <Button
+        android:id="@+id/call"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        app:layout_constraintTop_toTopOf="@+id/find"
+        app:layout_constraintBottom_toBottomOf="@+id/find"
+        app:layout_constraintLeft_toRightOf="@+id/find"
+        android:layout_margin="15dp"
+        android:text="Call"
+        android:onClick="MakeCall"
+        android:background="@color/green"
+        />
+
+    <!-- Row 4 -->
+    <TextView
+        android:id="@+id/result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintVertical_bias=".33"
+        android:layout_marginStart="25dp"
+        android:text="Number:"
+        android:textSize="20sp"
+        android:textColor="@color/red"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

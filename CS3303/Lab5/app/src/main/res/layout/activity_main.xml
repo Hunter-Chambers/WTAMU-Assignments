@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    >
+
+    <!-- Row 1 -->
+    <ProgressBar
+        style="?android:attr/progressBarStyleHorizontal"
+        android:id="@+id/progress_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintVertical_bias=".05"
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="25dp"
+        android:max="10"
+        />
+
+    <!-- Row 2 -->
+    <TextView
+        android:id="@+id/row_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/progress_bar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="@id/progress_bar"
+        app:layout_constraintRight_toRightOf="@id/progress_bar"
+        app:layout_constraintVertical_bias=".05"
+        app:layout_constraintHorizontal_bias="0"
+        android:textSize="18sp"
+        android:textColor="@color/maroon"
+        />
+
+    <!-- Row 3 -->
+    <TextView
+        android:id="@+id/row_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/row_2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="@id/progress_bar"
+        app:layout_constraintRight_toRightOf="@id/progress_bar"
+        app:layout_constraintVertical_bias=".075"
+        app:layout_constraintHorizontal_bias="0"
+        android:text="@string/row_3"
+        android:textSize="18sp"
+        android:textColor="@color/cyan"
+        android:textStyle="bold"
+        />
+
+    <!-- Row 4 -->
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/row_3"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="@id/progress_bar"
+        app:layout_constraintRight_toRightOf="@id/progress_bar"
+        app:layout_constraintVertical_bias=".1"
+        app:layout_constraintHorizontal_bias="0"
+        android:text="@string/compute_button"
+        android:textStyle="bold"
+        android:background="@color/neonGreen"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

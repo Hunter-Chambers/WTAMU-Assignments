@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">My Store</string>
+
+    <string name="dasani_info">Dasani $2.00</string>
+    <string name="dasani_img">Dasani Water</string>
+    <string name="fruit_maple_oatmeal_info">Fruit Oatmeal\n$2.00</string>
+    <string name="fruit_maple_oatmeal_img">Fruit Maple Oatmeal</string>
+    <string name="hotcakes_info">Hotcakes $2.00</string>
+    <string name="hotcakes_img">Hotcakes</string>
+    <string name="sausage_biscuit_info">Sausage Biscuit\n$1.99</string>
+    <string name="sausage_biscuit_img">Sausage Biscuit</string>
+    <string name="bacon_egg_biscuit_info">Bacon Egg Biscuit\n$2.00</string>
+    <string name="bacon_egg_biscuit_img">Bacon Egg Biscuit</string>
+    <string name="egg_sausage_biscuit_info">Egg Sausage\n$2.00</string>
+    <string name="egg_sausage_biscuit_img">Egg Sausage Biscuit</string>
+    <string name="sausage_burrito_info">Burrito $1.75</string>
+    <string name="sausage_burrito_img">Sausage Burrito</string>
+    <string name="process_btn">Process Order</string>
+
+    <string name="enter_quantity">Enter quantity for</string>
+    <string name="order_so_far">Your order so far:</string>
+
+    <string name="order_title">Your order:</string>
+</resources>
