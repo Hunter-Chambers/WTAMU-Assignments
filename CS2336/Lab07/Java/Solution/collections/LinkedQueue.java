@@ -131,6 +131,12 @@ public class LinkedQueue<Item> implements Cloneable, Iterable<Item> {
       //STUDENT 
       //    retrieve value at front of queue for return
       //    update front, used, and rear if used down to 0
+      answer = front.getData();
+      used--;
+
+      SLNode<Item> trash = front;
+      front = front.getLink();
+      trash.setLink(null); trash.setData(null); trash = null;
 
       return answer;
    }
@@ -164,6 +170,13 @@ public class LinkedQueue<Item> implements Cloneable, Iterable<Item> {
        //   setting front and rear appropriately.
        //   Otherwise, add the item to rear of queue and update rear
        this.used++;
+
+       if (used == 1) front = rear = new SLNode<Item>(item);
+       else {
+           SLNode<Item> newNode = new SLNode<Item>(item);
+           rear.setLink(newNode);
+           rear = newNode;
+       }
    }
               
 

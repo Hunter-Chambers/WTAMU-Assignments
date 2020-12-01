@@ -73,8 +73,8 @@ public class CarWashE {
    public static void carWashSimulate (int washTime, double arrivalProb, int totalTime) {
       //STUDENT -- for testing your implementation of LinkedQueue, comment out the 
       //           following line and uncomment the line after
-      Queue<Integer> arrivalTimes = new LinkedList<Integer>( );  //the builtin queue
-      //LinkedQueue<Integer> arrivalTimes = new LinkedQueue<Integer>( );  // student implemented queue
+      //Queue<Integer> arrivalTimes = new LinkedList<Integer>( );  //the builtin queue
+      LinkedQueue<Integer> arrivalTimes = new LinkedQueue<Integer>( );  // student implemented queue
       int arrivalTime;
       BooleanSource arrival = new BooleanSource(arrivalProb);
       Washer machine = new Washer(washTime);
@@ -120,13 +120,6 @@ public class CarWashE {
 
       System.out.printf("Customers remaining to be served after entrance closed: %d\n", arrivalTimes.size() );
 
-      /* use iterator to show what is in queue at gate closing time */
-      /*
-      System.out.printf("Arrival times for waiting customers:\n\t ");
-      for ( Integer aTime : arrivalTimes )
-          System.out.printf(" %d ", aTime);
-      System.out.println();
-      */
       System.out.printf("Arrival times for waiting customers:\n\t");
       arrivalTimes.forEach(aTime -> System.out.printf(" %d ", aTime));
       System.out.println();
@@ -138,24 +131,35 @@ public class CarWashE {
       //         the average wait time for those waiting after gate closed
       //   NOTE: there will be NO new arrivals to deal with
       //   NOTE: the clock continues to run as measured by currentSecond
+      while (machine.isBusy() || !arrivalTimes.isEmpty()) {
+          if (!machine.isBusy() && !arrivalTimes.isEmpty()) {
+              arrivalTime = arrivalTimes.remove();
+              waitTimesAfterEntranceClosed.addNumber(currentSecond - arrivalTime);
+              machine.startWashing();
+          }
 
+          machine.reduceRemainingTime();
+          currentSecond++;
+      }
 
       //STUDENT work here
       //   Be sure to finish up washing the last car with the elapsed time clock
       //   continuing to run
+      /* This happens in my while-loop above */
 
       // STUDENT
       //    Output average wait time for the clean up of waiting cars
+      if (waitTimesAfterEntranceClosed.howManyNumbers() > 0)
+         System.out.printf("Average wait for clean up customers: %.2f sec\n", waitTimesAfterEntranceClosed.average());
 
       System.out.printf("Current second is %d\n", currentSecond);
 
       // STUDENT
       //    Now break the elapsed time down into hours and minutes (with minutes
       //    rounded up to the nearest whole minute
-      /*
-      int hours = ???;
-      int minutes = ????;
+      double hoursAndFraction = ((double) currentSecond / 3600);
+      int hours = (int) hoursAndFraction;
+      int minutes = (int) Math.ceil((hoursAndFraction - hours) * 60);
       System.out.printf("Shut down after %d hours and %d minutes\n", hours, minutes);
-      */
    }
 }

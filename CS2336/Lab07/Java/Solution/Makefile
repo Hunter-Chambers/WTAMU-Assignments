@@ -5,22 +5,22 @@ run : CarWashE.class
 
 # NOTE: for use of student implementation of LinkedQueue, comment out the
 #       following four lines and uncomment those that are now commented
-CarWashE.class : CarWashE.java \
-		 utility/Averager.class utility/BooleanSource.class \
-		 utility/Washer.class
-	javac CarWashE.java
-
 #CarWashE.class : CarWashE.java \
-#		 collections/LinkedQueue.class \
 #		 utility/Averager.class utility/BooleanSource.class \
 #		 utility/Washer.class
 #	javac CarWashE.java
 
-#collections/LinkedQueue.class : collections/LinkedQueue.java collections/SLNode.class
-#	javac collections/LinkedQueue.java
+CarWashE.class : CarWashE.java \
+		 collections/LinkedQueue.class \
+		 utility/Averager.class utility/BooleanSource.class \
+		 utility/Washer.class
+	javac CarWashE.java
 
-#collections/SLNode.class : collections/SLNode.java
-#	javac collections/SLNode.java
+collections/LinkedQueue.class : collections/LinkedQueue.java collections/SLNode.class
+	javac collections/LinkedQueue.java
+
+collections/SLNode.class : collections/SLNode.java
+	javac collections/SLNode.java
 
 utility/Averager.class : utility/Averager.java
 	javac utility/Averager.java
