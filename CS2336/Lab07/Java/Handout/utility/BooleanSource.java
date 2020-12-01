@@ -6,7 +6,7 @@ package utility;
 * A BooleanSource provides a random sequence of boolean values based on a
 * given probability of occurrence
 *
-* @version  April, 2019
+* @version  November, 2020
 ******************************************************************************/
 public class BooleanSource {
    private double probability; // The approximate probability of query( ) returning true.

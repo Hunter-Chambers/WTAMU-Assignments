@@ -5,7 +5,7 @@ package utility;
 /******************************************************************************
 * An <CODE>Averager</CODE> computes an average of a group of numbers.
 *
-* @version  April, 2019
+* @version  November, 2020
 ******************************************************************************/
 public class Averager {
    private int count;  // How many numbers have been given to this averager

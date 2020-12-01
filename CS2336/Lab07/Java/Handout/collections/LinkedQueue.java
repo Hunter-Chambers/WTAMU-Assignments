@@ -125,7 +125,7 @@ public class LinkedQueue<Item> implements Cloneable, Iterable<Item> {
    public Item remove( ) {
       Item answer = null;
 
-      if (used == 0)
+      if (this.used == 0)
          throw new NoSuchElementException("Queue underflow");
 
       //STUDENT 
@@ -144,7 +144,9 @@ public class LinkedQueue<Item> implements Cloneable, Iterable<Item> {
     *   if the queue is empty
     **/
    public Item element( ) {
-       return this.front.getData();
+      if (this.used == 0)
+         throw new NoSuchElementException("Queue underflow");
+      return this.front.getData();
    }
    
    /**

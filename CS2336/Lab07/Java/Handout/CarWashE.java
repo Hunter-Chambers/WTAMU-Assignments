@@ -20,7 +20,7 @@ import collections.LinkedQueue;
 *   </CODE>
 *
 * @version
-*       April, 2020
+*       November, 2020
 ******************************************************************************/
 public class CarWashE {
    /**

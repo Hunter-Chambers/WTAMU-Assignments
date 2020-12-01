@@ -5,7 +5,7 @@ package utility;
 /******************************************************************************
 * An <CODE>Washer</CODE> simulates a simple washing machine.
 *
-* @version  April, 2019
+* @version  November, 2020
 ******************************************************************************/
 public class Washer {
    private int secondsForWash; // Seconds for a single wash
