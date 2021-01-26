@@ -366,6 +366,11 @@ class Statistician(object):
 
         # STUDENT completes implementation here
         temp.__N = (stat1.length() + stat2.length())
+
+        if (temp.__N == 0):
+            return temp
+        # end if
+
         temp.__sumX = (stat1.sumX() + stat2.sumX())
         temp.__sumXsq = (stat1.__sumXsq + stat2.__sumXsq)
 
