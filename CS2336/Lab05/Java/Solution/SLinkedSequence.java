@@ -75,26 +75,13 @@ public class SLinkedSequence<Item> extends Object implements Cloneable, Iterable
             //last bullet top page 235
             //copy from head through precursor
             // STUDENT COMPLETE HERE
-
-            SLNode<Item> otherCursor = sequenceToCopy.head.getLink();
-            head = precursor = new SLNode<Item>(sequenceToCopy.head.getData());
-
-            while (otherCursor != sequenceToCopy.cursor) {
-                precursor.setLink(new SLNode<Item>(otherCursor.getData()));
-                precursor = precursor.getLink();
-                otherCursor = otherCursor.getLink();
-            }
-
-            cursor = precursor;
-
-            while (otherCursor != null) {
-                cursor.setLink(new SLNode<Item>(otherCursor.getData()));
-                cursor = cursor.getLink();
-                otherCursor = otherCursor.getLink();
-            }
-
-            tail = cursor;
-            cursor = precursor.getLink();
+            Object [] result = SLNode.<Item>listPart(sequenceToCopy.head, sequenceToCopy.precursor);
+            Object [] result1 = SLNode.<Item>listPart(sequenceToCopy.cursor, sequenceToCopy.tail);
+            this.head = (SLNode<Item>) result[0];
+            this.tail = (SLNode<Item>) result1[1];
+            this.precursor = (SLNode<Item>) result[1];
+            this.cursor = (SLNode<Item>) result1[0];
+            this.precursor.setLink(this.cursor);
         } else { //no cursor or cursor is at head
             // first two bullets top page 235
             this.used = sequenceToCopy.used;
